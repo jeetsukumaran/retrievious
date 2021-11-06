@@ -177,7 +177,7 @@ It mostly consists of 4-word combinations that express: "<action-to-be-carried-o
 
     ```
     $ cd ~/.local/share
-    $ git clone git@github.com:jeetsukumaran/telescope-grab-lines.nvim.git
+    $ git clone git@github.com:jeetsukumaran/retrievious.git
     ```
 
 2.  Source the shell script extension by adding the following to your `~/.bashrc`
