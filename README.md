@@ -38,7 +38,24 @@ It mostly consists of 4-word combinations that express: "<action-to-be-carried-o
 
 ##  Interface
 
-### <Alt-g> for "Go"
+### Example workflow
+
+-   In either your shell OR your editor:
+    -   Type `<Alt-e>f.` (="Edit File found from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current working directory as the root of the search.
+    -   Type `<Alt-e>f~` (="Edit File found from '`~`' ") as above, but start search in home directory.
+    -   Type `<Alt-e>rf` (="Edit Recent File") to pull up a fuzzy finder dialog that lets you select a "frecent" file by name to open up in your editor, with the current directory as the root of the search.
+    -   Type `<Alt-g>f.` (="Grep for file contents from '`.`'") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the current directory as the root of the search.
+    -   Type `<Alt-g>f~` (="Grep for file contents from '`~`'") as above, but start search in home directory.
+-   Additional shell-specific functionality:
+    -   Type `<Alt-g>d.` (="Go to Directory found from '`.`'") to pull up a fuzzy finder to select a directory by name to change to, with search starting from the current working directory.
+    -   Type `<Alt-g>d~` (="Go to Directory found from '`~`'") as above, but start search from home directory.
+    -   Type `<Alt-g>rd` (="Go to Recent Directory) as above, but search "frecent" directories.
+    -   Type `<Alt-g>f.` (="Go to file found from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current directory as the root of the search. Your shell instance will change its working directory to the directory of the file.
+    -   Type `<Alt-g>rf` (="Go to Recent File) as above, but for "frecent" files.
+
+There are a number of other functionalities, including variants of above, which allow you to specify a relative parent directory to start the search (e.g., ``<Alt-g>f3.`` to start the search three directory levels up), as well as custom functionality to put/paste the retreived result onto the command line in the shell or content lines into the buffer in the editor.
+
+### `<Alt-g>` for "Go"
 
 `<Alt-g>`: **G**o to selected item(s), will change directory to selected item and, if a file, open it in the default editor.
 -   `f`: **f**ile(s) found by matching on name
@@ -87,7 +104,7 @@ It mostly consists of 4-word combinations that express: "<action-to-be-carried-o
 | `<Alt-g>rd`  |              | Recall "(f)recent" directory |                             | Change directory and edit                  |                           |
 | `<Alt-g>rf`  |              | Recall "(f)recent" file      |                             | Change directory and edit                  | Open selected file        |
 
-### <Alt-e> for "Edit" (in-situ)
+### `<Alt-e>` for "Edit" (in-situ)
 
 `<Alt-e>`: **E**dit the selected item(s): open selected file(s) in editor (without changing the directory).
 -   `f`: **f**ile(s) found by matching on name
@@ -125,9 +142,11 @@ It mostly consists of 4-word combinations that express: "<action-to-be-carried-o
 | `<Alt-e>g~`  |              | Grep for file by content   | home                        | Edit selected file without cd | Open selected file        |
 | `<Alt-e>g%`  |              | Grep for buffer by content | Directory of current buffer |                               | Open selected buffer      |
 | `<Alt-e>gb`  |              | Grep for buffer by content |                             |                               | Open selected buffer      |
-| `<Alt-e>rf`  |              | Recall "(f)recent" file    |                             |                               | Open selected file
+| `<Alt-e>rf`  |              | Recall "(f)recent" file    |                             |                               | Open selected file        |
 | `<Alt-e>b`   |              | Find buffer                |                             |                               | Open selected buffer      |
 
+
+### `<Alt-p>` for "Put" (or "Paste")
 
 `<Alt-p>`: starts **p**ulling a file, directory, or file names or content into the current context (command line or buffer)
 -   `f`: find a **f**ile by name, and insert its name into the command line
