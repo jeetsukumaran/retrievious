@@ -55,56 +55,9 @@ It mostly consists of 4-word combinations that express: "<action-to-be-carried-o
 
 There are a number of other functionalities, including variants of above, which allow you to specify a relative parent directory to start the search (e.g., ``<Alt-g>f3.`` to start the search three directory levels up), as well as custom functionality to put/paste the retreived result onto the command line in the shell or content lines into the buffer in the editor.
 
-### `<Alt-g>` for "Go"
+### In Detail
 
-`<Alt-g>`: **G**o to selected item(s), will change directory to selected item and, if a file, open it in the default editor.
--   `f`: **f**ile(s) found by matching on name
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `d`: a **d**irectory found by matching on name
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `g`: by **g**repping for a file by contents
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `r`: by **r**ecalling a "frecently" used
-    -   `f`: **f**ile
-    -   `d`: **d**irectory
-    -   `c`: **c**command
-
-| Key Sequence | Count        | Search Type                  | Starting Search             | Shell Action on Selected                   | Editor Action on Selected |
-|:-------------|:-------------|:-----------------------------|:----------------------------|:-------------------------------------------|:--------------------------|
-| `<Alt-g>f~`  |              | Find file                    | home                        | Change to selected file directory and edit |                           |
-| `<Alt-g>f.`  |              | Find file                    | cwd                         | Change to selected file directory and edit |                           |
-|              | `<Alt-g>f1.` | Find file                    | 1 directory up from cwd     | Change to selected file directory and edit |                           |
-|              | `<Alt-g>f2.` | Find file                    | 2 directories up from cwd   | Change to selected file directory and edit |                           |
-|              | `<Alt-g>f3.` | Find file                    | 3 directories up from cwd   | Change to selected file directory and edit |                           |
-|              | etc.         | etc.                         | etc.                        | etc.                                       |                           |
-|==============|==============|==============================|=============================|============================================|===========================|
-| `<Alt-g>d~`  |              | Find directory               | home                        | Change to selected directory               |                           |
-| `<Alt-g>d.`  |              | Find directory               | cwd                         | Change to selected directory               |                           |
-|              | `<Alt-g>d1.` | Find directory               | 1 directory up from cwd     | Change to selected directory               |                           |
-|              | `<Alt-g>d2.` | Find directory               | 2 directories up from cwd   | Change to selected directory               |                           |
-|              | `<Alt-g>d3.` | Find directory               | 3 directories up from cwd   | Change to selected directory               |                           |
-|              | etc.         | etc.                         | etc.                        | etc.                                       |                           |
-|==============|==============|==============================|=============================|============================================|===========================|
-| `<Alt-g>g~`  |              | Grep for file by content     | home                        | Change to selected file directory and edit |                           |
-| `<Alt-g>g.`  |              | Grep for file by content     | cwd                         | Change to selected file directory and edit |                           |
-|              | `<Alt-g>g1.` | Grep for file by content     | 1 directory up from cwd     | Change to selected file directory and edit |                           |
-|              | `<Alt-g>g2.` | Grep for file by content     | 2 directories up from cwd   | Change to selected file directory and edit |                           |
-|              | `<Alt-g>g3.` | Grep for file by content     | 3 directories up from cwd   | Change to selected file directory and edit |                           |
-|              | etc.         | etc.                         | etc.                        | etc.                                       |                           |
-| `<Alt-g>g%`  |              | Grep for buffer by content   | Directory of current buffer |                                            |                           |
-| `<Alt-g>gb`  |              | Grep for buffer by content   |                             |                                            |                           |
-|==============|==============|==============================|=============================|============================================|===========================|
-| `<Alt-g>rc`  |              | Recall "(f)recent" command   |                             | Put command in command line                |                           |
-| `<Alt-g>rd`  |              | Recall "(f)recent" directory |                             | Change directory and edit                  |                           |
-| `<Alt-g>rf`  |              | Recall "(f)recent" file      |                             | Change directory and edit                  | Open selected file        |
-
-### `<Alt-e>` for "Edit" (in-situ)
+#### `<Alt-e>` for "Edit" (in-situ)
 
 `<Alt-e>`: **E**dit the selected item(s): open selected file(s) in editor (without changing the directory).
 -   `f`: **f**ile(s) found by matching on name
@@ -132,13 +85,11 @@ There are a number of other functionalities, including variants of above, which 
 |              | `<Alt-g>f2.` | Find file                  | 2 directories up from cwd   | Edit selected file without cd | Open selected file        |
 |              | `<Alt-g>f3.` | Find file                  | 3 directories up from cwd   | Edit selected file without cd | Open selected file        |
 |              | etc.         | etc.                       | etc.                        | etc.                          | etc.                      |
-|==============|==============|============================|=============================|===============================|===========================|
 | `<Alt-e>g.`  |              | Grep for file by content   | cwd                         | Edit selected file without cd | Open selected file        |
 |              | `<Alt-e>g1.` | Grep for file by content   | 1 directory up from cwd     | Edit selected file without cd | Open selected file        |
 |              | `<Alt-e>g2.` | Grep for file by content   | 2 directories up from cwd   | Edit selected file without cd | Open selected file        |
 |              | `<Alt-e>g3.` | Grep for file by content   | 3 directories up from cwd   | Edit selected file without cd | Open selected file        |
 |              | etc.         | etc.                       | etc.                        | etc.                          | etc.                      |
-|==============|==============|============================|=============================|===============================|===========================|
 | `<Alt-e>g~`  |              | Grep for file by content   | home                        | Edit selected file without cd | Open selected file        |
 | `<Alt-e>g%`  |              | Grep for buffer by content | Directory of current buffer |                               | Open selected buffer      |
 | `<Alt-e>gb`  |              | Grep for buffer by content |                             |                               | Open selected buffer      |
@@ -146,7 +97,7 @@ There are a number of other functionalities, including variants of above, which 
 | `<Alt-e>b`   |              | Find buffer                |                             |                               | Open selected buffer      |
 
 
-### `<Alt-p>` for "Put" (or "Paste")
+#### `<Alt-p>` for "Put" (or "Paste")
 
 `<Alt-p>`: starts **p**ulling a file, directory, or file names or content into the current context (command line or buffer)
 -   `f`: find a **f**ile by name, and insert its name into the command line
@@ -165,23 +116,19 @@ There are a number of other functionalities, including variants of above, which 
 | Key Sequence | Count        | Search Type              | Starting Search           | Shell Action on Selected          | Editor Action on Selected   |
 |:-------------|:-------------|:-------------------------|:--------------------------|:----------------------------------|:----------------------------|
 | `<Alt-p>rc`  |              | Find "(f)recent" command |                           | Put command in command line       | Put command in command line |
-|==============|==============|==========================|===========================|===================================|=============================|
 | `<Alt-p>d~`  |              | Find directory           | home                      | Put selected name in command line |                             |
 | `<Alt-p>d.`  |              | Find directory           | cwd                       | Put selected name in command line |                             |
 |              | `<Alt-p>d1.` | Find directory           | 1 directory up from cwd   | Put selected name in command line |                             |
 |              | `<Alt-p>d2.` | Find directory           | 2 directories up from cwd | Put selected name in command line |                             |
 |              | `<Alt-p>d3.` | Find directory           | 3 directories up from cwd | Put selected name in command line |                             |
 |              | etc.         | etc.                     | etc.                      | etc.                              |                             |
-|==============|==============|==========================|===========================|===================================|=============================|
 | `<Alt-p>f~`  |              | Find file                | home                      | Put selected name in command line |                             |
 | `<Alt-p>f.`  |              | Find file                | cwd                       | Put selected name in command line |                             |
 |              | `<Alt-p>f1.` | Find directory           | 1 directory up from cwd   | Put selected name in command line |                             |
 |              | `<Alt-p>f2.` | Find directory           | 2 directories up from cwd | Put selected name in command line |                             |
 |              | `<Alt-p>f3.` | Find directory           | 3 directories up from cwd | Put selected name in command line |                             |
 |              | etc.         | etc.                     | etc.                      | etc.                              |                             |
-|==============|==============|==========================|===========================|===================================|=============================|
 | `<Alt-p>rc`  |              | Find "(f)recent" command |                           | Put command in command line       | Put command in command line |
-|==============|==============|==========================|===========================|===================================|=============================|
 | `<Alt-p>l~`  |              | Grep for lines           | home                      |                                   | Put line into buffer        |
 | `<Alt-p>l.`  |              | Grep for lines           | cwd                       |                                   | Put line into buffer        |
 |              | `<Alt-p>l1.` | Grep for lines           | 1 directory up from cwd   |                                   | Put line to buffer          |
