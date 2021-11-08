@@ -42,15 +42,18 @@ It mostly consists of 4-word combinations that express: "<action-to-be-carried-o
 
 -   In either your shell OR your editor:
     -   Type `<Alt-e>f.` (="Edit File found from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current working directory as the root of the search.
+    -   Type `<Alt-e>f2.` (="Edit File found from *2* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the directory two levels up from the current as the root of the search.
     -   Type `<Alt-e>f~` (="Edit File found from '`~`' ") as above, but start search in home directory.
     -   Type `<Alt-e>rf` (="Edit Recent File") to pull up a fuzzy finder dialog that lets you select a "frecent" file by name to open up in your editor, with the current directory as the root of the search.
-    -   Type `<Alt-g>f.` (="Grep for file contents from '`.`'") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the current directory as the root of the search.
-    -   Type `<Alt-g>f~` (="Grep for file contents from '`~`'") as above, but start search in home directory.
+    -   Type `<Alt-e>g.` (="Grep for file contents from '`.`'") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the current directory as the root of the search.
+    -   Type `<Alt-e>g4.` (="Grep for file contents from *4* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the directory four levels up from the currentas the root of the search.
+    -   Type `<Alt-e>g~` (="Grep for file contents from '`~`'") as above, but start search in home directory.
 -   Additional shell-specific functionality:
     -   Type `<Alt-g>d.` (="Go to Directory found from '`.`'") to pull up a fuzzy finder to select a directory by name to change to, with search starting from the current working directory.
     -   Type `<Alt-g>d~` (="Go to Directory found from '`~`'") as above, but start search from home directory.
     -   Type `<Alt-g>rd` (="Go to Recent Directory) as above, but search "frecent" directories.
     -   Type `<Alt-g>f.` (="Go to file found from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current directory as the root of the search. Your shell instance will change its working directory to the directory of the file.
+    -   Type `<Alt-g>f3.` (="Go to file found from *3* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the directory 3 levels up from the current as the root of the search. Your shell instance will change its working directory to the directory of the file.
     -   Type `<Alt-g>rf` (="Go to Recent File) as above, but for "frecent" files.
 
 There are a number of other functionalities, including variants of above, which allow you to specify a relative parent directory to start the search (e.g., ``<Alt-g>f3.`` to start the search three directory levels up), as well as custom functionality to put/paste the retreived result onto the command line in the shell or content lines into the buffer in the editor.
@@ -77,25 +80,28 @@ There are a number of other functionalities, including variants of above, which 
     -   `d`: **d**irectory
     -   `c`: **c**command
 
-| Key Sequence | Count        | Search Type                | Starting Search             | Shell Action on Selected      | Editor Action on Selected |
-|:-------------|:-------------|:---------------------------|:----------------------------|:------------------------------|:--------------------------|
-| `<Alt-e>f~`  |              | Find file                  | home                        | Edit selected file without cd | Open selected file        |
-| `<Alt-e>f.`  |              | Find file                  | cwd                         | Edit selected file without cd | Open selected file        |
-|              | `<Alt-g>f1.` | Find file                  | 1 directory up from cwd     | Edit selected file without cd | Open selected file        |
-|              | `<Alt-g>f2.` | Find file                  | 2 directories up from cwd   | Edit selected file without cd | Open selected file        |
-|              | `<Alt-g>f3.` | Find file                  | 3 directories up from cwd   | Edit selected file without cd | Open selected file        |
-|              | etc.         | etc.                       | etc.                        | etc.                          | etc.                      |
-| `<Alt-e>g.`  |              | Grep for file by content   | cwd                         | Edit selected file without cd | Open selected file        |
-|              | `<Alt-e>g1.` | Grep for file by content   | 1 directory up from cwd     | Edit selected file without cd | Open selected file        |
-|              | `<Alt-e>g2.` | Grep for file by content   | 2 directories up from cwd   | Edit selected file without cd | Open selected file        |
-|              | `<Alt-e>g3.` | Grep for file by content   | 3 directories up from cwd   | Edit selected file without cd | Open selected file        |
-|              | etc.         | etc.                       | etc.                        | etc.                          | etc.                      |
-| `<Alt-e>g~`  |              | Grep for file by content   | home                        | Edit selected file without cd | Open selected file        |
-| `<Alt-e>g%`  |              | Grep for buffer by content | Directory of current buffer |                               | Open selected buffer      |
-| `<Alt-e>gb`  |              | Grep for buffer by content |                             |                               | Open selected buffer      |
-| `<Alt-e>rf`  |              | Recall "(f)recent" file    |                             |                               | Open selected file        |
-| `<Alt-e>b`   |              | Find buffer                |                             |                               | Open selected buffer      |
+| Key Sequence | Count           | Search Type                | Starting Search             | Shell Action on Selected      | Editor Action on Selected |
+|:-------------|:----------------|:---------------------------|:----------------------------|:------------------------------|:--------------------------|
+| `<Alt-e>f~`  |                 | Find file                  | home                        | Edit selected file without cd | Open selected file        |
+| `<Alt-e>f.`  |                 | Find file                  | cwd                         | Edit selected file without cd | Open selected file        |
+|              | `<Alt-e> f 1 .` | Find file                  | 1 directory up from cwd     | Edit selected file without cd | Open selected file        |
+|              | `<Alt-e> f 2 .` | Find file                  | 2 directories up from cwd   | Edit selected file without cd | Open selected file        |
+|              | `<Alt-e> f 3 .` | Find file                  | 3 directories up from cwd   | Edit selected file without cd | Open selected file        |
+|              | etc.            | etc.                       | etc.                        | etc.                          | etc.                      |
+| `<Alt-e>g.`  |                 | Grep for file by content   | cwd                         | Edit selected file without cd | Open selected file        |
+|              | `<Alt-e> g 1 .` | Grep for file by content   | 1 directory up from cwd     | Edit selected file without cd | Open selected file        |
+|              | `<Alt-e> g 2 .` | Grep for file by content   | 2 directories up from cwd   | Edit selected file without cd | Open selected file        |
+|              | `<Alt-e> g 3 .` | Grep for file by content   | 3 directories up from cwd   | Edit selected file without cd | Open selected file        |
+|              | etc.            | etc.                       | etc.                        | etc.                          | etc.                      |
+| `<Alt-e>g~`  |                 | Grep for file by content   | home                        | Edit selected file without cd | Open selected file        |
+| `<Alt-e>g%`  |                 | Grep for buffer by content | Directory of current buffer |                               | Open selected buffer      |
+| `<Alt-e>gb`  |                 | Grep for buffer by content |                             |                               | Open selected buffer      |
+| `<Alt-e>rf`  |                 | Recall "(f)recent" file    |                             |                               | Open selected file        |
+| `<Alt-e>b`   |                 | Find buffer                |                             |                               | Open selected buffer      |
 
+#### `<Alt-g>` for "Go" (and Edit)
+
+As above, but, in the shell, will *change* to the directory of the selected file before opening it up in the editor.
 
 #### `<Alt-p>` for "Put" (or "Paste")
 
