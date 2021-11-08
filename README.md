@@ -8,7 +8,11 @@ When the files provided by *Retrievious* are sourced, added to, or otherwise rea
 When the scripts and configuration files given by *Retrievious* are sourced, included, or otherwise loaded by your shell and editor configurations, you will be provided you with a common "grammar" n your shell and editor for specifying with surgical precision (1) what path on your filesystem you want, and (b) what you want to do with it.
 It very quickly becomes intuitive to "speak" in this grammar to locate, for e.g. a file using a fuzzy search pattern for its search, with the search starting from a directory 2 levels up from your current one, and thn, when found, change to the parent directory of the located file and open it up in your text editor.
 This grammar not only has a simple vocabulary, of only a few words, but is itself also simple.
-It mostly consists of 4-word combinations that express: "<action-to-be-carried-out> <object on which it is going be carried out on><how to search for the object><where to start looking for the object>"
+It mostly consists of 4-word combinations that express:
+
+```
+<action-to-be-carried-out> <object on which it is going be carried out on><how to search for the object><where to start looking for the object>
+```
 
 
 ##  Dependencies
