@@ -1,4 +1,20 @@
 
+lua << EOF
+-- Use `live_grep_raw` if available, otherwise fall back to `live_grep`
+-- - `live_grep_raw` is IMHO a more useful interface, allowing you to specify
+--   file types in the query prompt (e.g., ``-tpy to_csv.*index``).
+-- - Currently `live_grep_raw` is a standalone plugin
+--      (https://github.com/nvim-telescope/telescope-live-grep-raw.nvim)
+--   but hopefully/probably/soon will be incorporated into Telescope builtin.
+local has_telescope_live_grep_raw, telescope_live_grep_raw = pcall(require, "telescope._extensions.live_grep_raw")
+function _G._telescope_grep(opts)
+    if has_telescope_live_grep_raw then
+        require('telescope').extensions.live_grep_raw.live_grep_raw(opts)
+    else
+        require('telescope.builtin').live_grep(opts)
+    end
+end
+EOF
 
 " Find from count directories up from current working directory
 function! s:_find_up_n(count)
@@ -17,7 +33,9 @@ function! s:_grep_up_n(count)
     let rel = repeat("/..", nlevels)
     let cwd = substitute(root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
-    :lua require('telescope.builtin').live_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    " :lua require('telescope.builtin').live_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    " :lua require('telescope').extensions.live_grep_raw.live_grep_raw({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    :lua _telescope_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
 endfunction
 
 " Grep from count directories up from current working directory
@@ -44,7 +62,7 @@ endfunction
 call s:_set_find_and_grep_keymaps()
 
 nnoremap <M-e>f~ <cmd>:lua require('telescope.builtin').find_files({cwd="~", prompt_title="~"})<CR>
-nnoremap <M-e>g~ <cmd>:lua require('telescope.builtin').live_grep({cwd="~", prompt_title="~"})<CR>
+nnoremap <M-e>g~ <cmd>:lua _telescope_grep({cwd="~", prompt_title="~"})<CR>
 nnoremap <M-p>l~ <cmd>:Telescope grab_lines cwd=~<CR>
 
 nnoremap <M-e>b <cmd>Telescope buffers     <cr>
@@ -53,7 +71,7 @@ nnoremap <C-p> <cmd>Telescope buffers     <cr>
 
 nnoremap <M-e>rf <cmd>Telescope oldfiles    <cr>
 
-nnoremap <M-e>g% <cmd>:lua require('telescope.builtin').live_grep({cwd=vim.fn.expand('%:p:h'), prompt_title=vim.fn.expand('%:p:h')})<CR>
-nnoremap <M-e>gb <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title="buffers"})<CR>
+nnoremap <M-e>g% <cmd>:lua _telescope_grep({cwd=vim.fn.expand('%:p:h'), prompt_title=vim.fn.expand('%:p:h')})<CR>
+nnoremap <M-e>gb <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
 
 
