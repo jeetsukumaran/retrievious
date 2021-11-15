@@ -152,7 +152,7 @@ function __f_regularize_paths__() {
         # entry=$(realpath "${entry}")
         # entry=$(echo $entry | sed 's/ /\\ /g')
         # echo "${entry}"
-        line=$(echo $line | python -c "import sys; import shlex; import os; print(shlex.quote(os.path.abspath(sys.stdin.read().strip())))")
+        line=$(echo $line | python3 -c "import sys; import shlex; import os; print(shlex.quote(os.path.abspath(sys.stdin.read().strip())))")
         echo $line
     done
 }
@@ -160,7 +160,7 @@ function __f_regularize_paths__() {
 function __f_dir_of_first_path__() {
     local line
     read line
-    line=$(echo $line | python -c "import sys; import shlex; import os; print(shlex.quote(os.path.dirname(shlex.split(sys.stdin.read())[0])))")
+    line=$(echo $line | python3 -c "import sys; import shlex; import os; print(shlex.quote(os.path.dirname(shlex.split(sys.stdin.read())[0])))")
     echo $line
 }
 
