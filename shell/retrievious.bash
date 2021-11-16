@@ -33,7 +33,7 @@ then
 fi
 if [[ -z "${RETRIEVIOUS_NO_IGNORE_DOT}" ]]
 then
-    export RETRIEVIOUS_ACK_SPECIAL_OPTS="--ignore-file='match:/^\./'"
+    export RETRIEVIOUS_ACK_SPECIAL_OPTS="--ignore-dir='match:/^\./' --ignore-file='match:/^\./'"
 else
     export RETRIEVIOUS_ACK_SPECIAL_OPTS=""
 fi
