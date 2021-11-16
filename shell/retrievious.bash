@@ -37,7 +37,6 @@ then
 else
     export RETRIEVIOUS_ACK_SPECIAL_OPTS=""
 fi
-export RETRIEVIOUS_GREP_TYPE="ack"
 if [[ -z "${RETRIEVIOUS_DEFAULT_OPEN_APP}" ]]
 then
     function __f_xdg_open__() {
