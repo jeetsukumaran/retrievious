@@ -1,17 +1,5 @@
 #! /bin/bash
 
-# https://github.com/clvv/fasd
-# FASD="$WORKHOST_ECOLOGY_HOME/provision/package/fasd/fasd"
-# if [[ -f $FASD ]]
-# then
-#     # Simply aliasing the function as we do below with others
-#     # works, but causes weirdness when scp/ssh-ing in
-#     # Instead, we hope the provisioner/manager correctly
-#     # links to it from somewhere on the path
-#     eval "$(fasd --init auto)"
-# fi
-# unset FASD
-
 # Defaults and Options {{{1
 [[ -n "$RETRIEVIOUS_PRUNE_NAMES" ]] || RETRIEVIOUS_PRUNE_NAMES=""
 [[ -n "$RETRIEVIOUS_PRUNE_PATHS" ]] || RETRIEVIOUS_PRUNE_PATHS=""
