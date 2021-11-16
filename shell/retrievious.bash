@@ -19,17 +19,16 @@
 [[ -n "$RETRIEVIOUS_EDIT_PRUNE_PATHS" ]] || RETRIEVIOUS_EDIT_PRUNE_PATHS=""
 [[ -n "$RETRIEVIOUS_FDFIND_PATH" ]] || RETRIEVIOUS_FDFIND_PATH="fdfind"
 [[ -n "$RETRIEVIOUS_FDFIND_OPTS" ]] || RETRIEVIOUS_FDFIND_OPTS=""
-if [[ -z "${RETRIEVIOUS_GREP}" ]]
+if [[ -z "${RETRIEVIOUS_GREP_TYPE}" ]]
 then
     if [[ $(type -P "rg") ]]
     then
-        export RETRIEVIOUS_GREP="rg"
+        export RETRIEVIOUS_GREP_TYPE="rg"
     elif [[ $(type -P "ack") ]]
     then
-        export RETRIEVIOUS_GREP="ack"
+        export RETRIEVIOUS_GREP_TYPE="ack"
     else
         >&2 echo "RETRIEVIOUS requires either 'rg' (ripgrep) or 'ack' available for grep functionality."
-        exit 1
     fi
 fi
 if [[ -z "${RETRIEVIOUS_DEFAULT_OPEN_APP}" ]]
@@ -139,15 +138,17 @@ fi
 # ripgrep {{{3
 function __f_compose_fzf_grep_prune__() {
     local RPI to_ignore
-    if [[ "ack" == ${RETRIEVIOUS_GREP} ]]
+    if [[ "ack" == ${RETRIEVIOUS_GREP_TYPE} ]]
     then
         local exclude_flag="--ignore-dir "
-    elif [[ "rg" == ${RETRIEVIOUS_GREP} ]]
+    elif [[ "rg" == ${RETRIEVIOUS_GREP_TYPE} ]]
     then
         local exclude_flag="-g !"
     else
-        >&2 echo "Unsupported grep program: '${RETRIEVIOUS_GREP}'"
-        exit 1
+        # >&2 echo "Unsupported grep program: '${RETRIEVIOUS_GREP_TYPE}'"
+        # exit 1
+        echo ""
+        return
     fi
     RPI=""
     for to_ignore in $RETRIEVIOUS_PRUNE_NAMES
@@ -278,14 +279,14 @@ function __grep_and_select_file_ack__() {
 }
 
 function __grep_and_select_file__() {
-    if [[ "ack" == ${RETRIEVIOUS_GREP} ]]
+    if [[ "ack" == ${RETRIEVIOUS_GREP_TYPE} ]]
     then
         __grep_and_select_file_ack__ $1
-    elif [[ "rg" == ${RETRIEVIOUS_GREP} ]]
+    elif [[ "rg" == ${RETRIEVIOUS_GREP_TYPE} ]]
     then
         __grep_and_select_file_rg__ $1
     else
-        >&2 echo "Unsupported grep program: '${RETRIEVIOUS_GREP}'"
+        >&2 echo "Unsupported grep program: '${RETRIEVIOUS_GREP_TYPE}'"
         echo ""
     fi
 }
