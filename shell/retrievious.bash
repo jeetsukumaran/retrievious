@@ -263,7 +263,6 @@ function __grep_and_select_file_rg__() {
 function __grep_and_select_file_ack__() {
     [[ -n $1 ]] && cd $1 # go to provided folder or noop
     local ACK_DEFAULT_COMMAND="ack ${_FZF_GREP_PRUNE} -l -i ${RETRIEVIOUS_ACK_OPTS} ${@:2}"
-    echo $ACK_DEFAULT_COMMAND >> log.txt
     local fullpath=$(
         FZF_DEFAULT_COMMAND="ack -f" fzf \
         --header=":::$(pwd):::" \
