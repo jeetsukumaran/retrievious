@@ -19,6 +19,7 @@
 [[ -n "$RETRIEVIOUS_EDIT_PRUNE_PATHS" ]] || RETRIEVIOUS_EDIT_PRUNE_PATHS=""
 [[ -n "$RETRIEVIOUS_FDFIND_PATH" ]] || RETRIEVIOUS_FDFIND_PATH="fdfind"
 [[ -n "$RETRIEVIOUS_FDFIND_OPTS" ]] || RETRIEVIOUS_FDFIND_OPTS=""
+RETRIEVIOUS_GREP="ack"
 if [[ -z "$RETRIEVIOUS_DEFAULT_OPEN_APP" ]]
 then
     function __f_xdg_open__() {
@@ -126,14 +127,23 @@ fi
 # ripgrep {{{3
 function __f_compose_fzf_grep_prune__() {
     local RPI to_ignore
+    if [[ "ack" == ${RETRIEVIOUS_GREP} ]]
+    then
+        local exclude_flag="--ignore-dir "
+    elif [[ "rg" == ${RETRIEVIOUS_GREP} ]]
+    then
+        local exclude_flag="-g !"
+    else
+        exit "Unsupported grep program: '${RETRIEVIOUS_GREP}'"
+    fi
     RPI=""
     for to_ignore in $RETRIEVIOUS_PRUNE_NAMES
     do
-        RPI="${RPI} -g !${to_ignore}"
+        RPI="${RPI} ${exclude_flag}${to_ignore}"
     done
     for to_ignore in $RETRIEVIOUS_PRUNE_PATHS
     do
-        RPI="${RPI} -g !${to_ignore}"
+        RPI="${RPI} ${exclude_flag}${to_ignore}"
     done
     echo "$RPI"
 }
@@ -262,22 +272,9 @@ function __find_and_select_dir_and_cd__() {
         || echo ""
 }
 
-function __grep_and_select_file_and_cd_and_edit__() {
+function __grep_and_select_file_and_cd_and_edit_rg__() {
     [[ -n $1 ]] && cd $1 # go to provided folder or noop
-
-    # -l : only print the paths with at least on match
-    # -i : case-insensitive (-s for case-sensitive, -S for smart-case)
-    # --hidden: include hidden files (--no-hidden for opposite)
-    # --no-ignore-vcs: include git hidden files (--ignore-vcs for opposite)
-    # RG_DEFAULT_COMMAND="rg -l -i --hidden --no-ignore-vcs"
     local RG_DEFAULT_COMMAND="rg ${_FZF_GREP_PRUNE} -l -i ${RETRIEVIOUS_RIPGREP_OPTS} ${@:2}"
-    # -m \
-    #     -e \
-    #     --ansi \
-    #     --phony \
-    #     --bind "ctrl-a:select-all" \
-    #     --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
-    #
     local fullpath=$(
         FZF_DEFAULT_COMMAND="rg --files" fzf \
         --header=":::$(pwd):::" \
@@ -287,6 +284,25 @@ function __grep_and_select_file_and_cd_and_edit__() {
         --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
         --preview-window=up:50 \
         --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {}" | cut -d":" -f1,2 \
+        | __f_regularize_paths__
+    )
+
+    [[ -n $fullpath ]] && echo "cd $( echo ${fullpath} | __f_dir_of_first_path__) && $EDITOR ${fullpath}" || echo ""
+}
+
+function __grep_and_select_file_and_cd_and_edit__() {
+    [[ -n $1 ]] && cd $1 # go to provided folder or noop
+    local ACK_DEFAULT_COMMAND="ack ${_FZF_GREP_PRUNE} -l -i ${RETRIEVIOUS_ACK_OPTS} ${@:2}"
+    echo $ACK_DEFAULT_COMMAND >> log.txt
+    local fullpath=$(
+        FZF_DEFAULT_COMMAND="ack -f" fzf \
+        --header=":::$(pwd):::" \
+        --phony \
+        --inline-info \
+        -m \
+        --bind "change:reload:$ACK_DEFAULT_COMMAND {q} || true" \
+        --preview-window=up:50 \
+        --preview "ack -i --color --color-match 'bold black on_yellow' {q} {}" | cut -d":" -f1,2 \
         | __f_regularize_paths__
     )
 
