@@ -31,6 +31,13 @@ then
         >&2 echo "RETRIEVIOUS requires either 'rg' (ripgrep) or 'ack' available for grep functionality."
     fi
 fi
+if [[ -z "${RETRIEVIOUS_NO_IGNORE_DOT}" ]]
+then
+    export RETRIEVIOUS_ACK_SPECIAL_OPTS="--ignore-file='match:/^\./'"
+else
+    export RETRIEVIOUS_ACK_SPECIAL_OPTS=""
+fi
+export RETRIEVIOUS_GREP_TYPE="ack"
 if [[ -z "${RETRIEVIOUS_DEFAULT_OPEN_APP}" ]]
 then
     function __f_xdg_open__() {
@@ -262,9 +269,10 @@ function __grep_and_select_file_rg__() {
 
 function __grep_and_select_file_ack__() {
     [[ -n $1 ]] && cd $1 # go to provided folder or noop
-    local ACK_DEFAULT_COMMAND="ack ${_FZF_GREP_PRUNE} -l -i ${RETRIEVIOUS_ACK_OPTS} ${@:2}"
+    local ack_opts="${_FZF_GREP_PRUNE} ${RETRIEVIOUS_ACK_SPECIAL_OPTS} -i ${RETRIEVIOUS_ACK_OPTS} ${@:2}"
+    local ACK_DEFAULT_COMMAND="ack ${ack_opts} -l"
     local fullpath=$(
-        FZF_DEFAULT_COMMAND="ack -f" fzf \
+        FZF_DEFAULT_COMMAND="ack ${ack_opts} -f" fzf \
         --header=":::$(pwd):::" \
         --phony \
         --inline-info \
