@@ -275,7 +275,8 @@ function __grep_and_select_file_rg__() {
         --preview-window wrap \
         --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {}" \
     )
-    [ -n "${selected[0]}" ] && echo "${selected[0]}" "+${selected[1]}"
+    [ -n "${selected[0]}" ] \
+        && echo "$(echo ${selected[0]} | __f_regularize_paths__)" "+${selected[1]}"
 
     # local INITIAL_QUERY=""
     # local RG_PREFIX="rg ${_FZF_GREP_PRUNE} ${RETRIEVIOUS_RIPGREP_OPTS} --column --line-number --no-heading --color=always --smart-case ${@:2}"
