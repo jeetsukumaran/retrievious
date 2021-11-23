@@ -239,24 +239,6 @@ function __find_and_select_frecent_dir__() {
 
 function __grep_and_select_file_rg__() {
     [[ -n $1 ]] && cd $1 # go to provided folder or noop
-
-    # INITIAL_QUERY=""
-    # RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-    # FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
-    #     fzf --bind "change:reload:$RG_PREFIX {q} || true" \
-    #     --ansi --disabled --query "$INITIAL_QUERY" \
-    #     --height=50% --layout=reverse
-
-    # IFS=: read -ra selected < <(
-    #     rg --color=always --line-number --no-heading --smart-case "${*:-}" |
-    #     fzf --ansi \
-    #         --color "hl:-1:underline,hl+:-1:underline:reverse" \
-    #         --delimiter : \
-    #         --preview 'bat --color=always {1} --highlight-line {2}' \
-    #         --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
-    # )
-    # [ -n "${selected[0]}" ] && echo "${selected[0]}" "+${selected[1]}"
-
     local INITIAL_QUERY=""
     local RG_PREFIX="rg ${_FZF_GREP_PRUNE} ${RETRIEVIOUS_RIPGREP_OPTS} --column --line-number --no-heading --color=always --smart-case ${@:2}"
     IFS=: read -ra selected < <(
@@ -277,28 +259,6 @@ function __grep_and_select_file_rg__() {
     )
     [ -n "${selected[0]}" ] \
         && echo "$(echo ${selected[0]} | __f_regularize_paths__)" "+${selected[1]}"
-
-    # local INITIAL_QUERY=""
-    # local RG_PREFIX="rg ${_FZF_GREP_PRUNE} ${RETRIEVIOUS_RIPGREP_OPTS} --column --line-number --no-heading --color=always --smart-case ${@:2}"
-    # local fullpath=$(
-    #     FZF_DEFAULT_COMMAND="${RG_PREFIX} '${INITIAL_QUERY}'" \
-    #     fzf \
-    #     --bind "change:reload:$RG_PREFIX {q} || true" \
-    #     --ansi \
-    #     --disabled \
-    #     --delimiter : \
-    #     --query "${INITIAL_QUERY}" \
-    #     --header=":::$(pwd):::" \
-    #     --phony \
-    #     --inline-info \
-    #     -m \
-    #     --preview-window=up:50 \
-    #     --preview-window wrap \
-    #     --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {}" \
-    #     | cut -d":" -f1,2 \
-    #     | __f_regularize_paths__
-    # ) \
-    #     && echo ${fullpath} || echo ""
 }
 
 function __grep_and_select_file_ack__() {
