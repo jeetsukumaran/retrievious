@@ -238,13 +238,20 @@ function __find_and_select_frecent_dir__() {
 }
 
 function __grep_and_select_file_rg__() {
+    # [Ripgrep integration](https://github.com/junegunn/fzf/blob/master/ADVANCED.md#ripgrep-integration)
     [[ -n $1 ]] && cd $1 # go to provided folder or noop
     local INITIAL_QUERY=""
     local RG_PREFIX="rg ${_FZF_GREP_PRUNE} ${RETRIEVIOUS_RIPGREP_OPTS} --column --line-number --no-heading --color=always --smart-case ${@:2}"
+    # --preview 'bat --color=always {1} --highlight-line {2}' \
+    # --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+    # --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {1}" \
+    # --preview 'bat --color=always {1} --highlight-line {2}'
     IFS=: read -ra selected < <(
         FZF_DEFAULT_COMMAND="${RG_PREFIX} '${INITIAL_QUERY}'" \
         fzf \
-        --bind "change:reload:$RG_PREFIX {q} || true" \
+        --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+        --bind "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query" \
+        --prompt '1. ripgrep> ' \
         --ansi \
         --disabled \
         --delimiter : \
@@ -253,9 +260,9 @@ function __grep_and_select_file_rg__() {
         --phony \
         --inline-info \
         -m \
+        --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {1}" \
         --preview-window=up:50 \
         --preview-window wrap \
-        --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {}" \
     )
     [ -n "${selected[0]}" ] \
         && echo "$(echo ${selected[0]} | __f_regularize_paths__)" "+${selected[1]}"
