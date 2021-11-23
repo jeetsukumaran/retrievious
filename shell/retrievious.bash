@@ -242,10 +242,11 @@ function __grep_and_select_file_rg__() {
     [[ -n $1 ]] && cd $1 # go to provided folder or noop
     local INITIAL_QUERY=""
     local RG_PREFIX="rg ${_FZF_GREP_PRUNE} ${RETRIEVIOUS_RIPGREP_OPTS} --column --line-number --no-heading --color=always --smart-case ${@:2}"
+    # bat preview:
     # --preview 'bat --color=always {1} --highlight-line {2}' \
     # --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+    # rg preview:
     # --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {1}" \
-    # --preview 'bat --color=always {1} --highlight-line {2}'
     IFS=: read -ra selected < <(
         FZF_DEFAULT_COMMAND="${RG_PREFIX} '${INITIAL_QUERY}'" \
         fzf \
@@ -260,9 +261,8 @@ function __grep_and_select_file_rg__() {
         --phony \
         --inline-info \
         -m \
-        --preview "rg -i --colors match:fg:black --colors match:bg:yellow --colors match:style:bold --pretty --context 2 {q} {1}" \
-        --preview-window=up:50 \
-        --preview-window wrap \
+        --preview 'bat --color=always {1} --highlight-line {2}' \
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
     )
     [ -n "${selected[0]}" ] \
         && echo "$(echo ${selected[0]} | __f_regularize_paths__)" "+${selected[1]}"
