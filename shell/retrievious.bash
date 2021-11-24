@@ -498,88 +498,88 @@ function bind_fuzzy_functions() {
         bind '"\e^": history-expand-line'
     fi
 
-    # Alt-g f <location>: *G*o to found *f*ile path: change to selected file's directory and edit it
+    # Alt-f f <location>: Find file
 
-    _bind_special_fn "\\egf."  '__find_and_select_file_and_cd_and_edit__ .'
-    _bind_special_fn "\\egf1." '__find_and_select_file_and_cd_and_edit__ ..'
-    _bind_special_fn "\\egf2." '__find_and_select_file_and_cd_and_edit__ ../..'
-    _bind_special_fn "\\egf3." '__find_and_select_file_and_cd_and_edit__ ../../..'
-    _bind_special_fn "\\egf4." '__find_and_select_file_and_cd_and_edit__ ../../../..'
-    _bind_special_fn "\\egf5." '__find_and_select_file_and_cd_and_edit__ ../../../../..'
-    _bind_special_fn "\\egf6." '__find_and_select_file_and_cd_and_edit__ ../../../../../..'
-    _bind_special_fn "\\egf7." '__find_and_select_file_and_cd_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\egf8." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\egf9." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\egf~"  '__find_and_select_file_and_cd_and_edit__ $HOME'
+    _bind_special_fn "\\eff."  '__find_and_select_file_and_cd_and_edit__ .'
+    _bind_special_fn "\\eff1." '__find_and_select_file_and_cd_and_edit__ ..'
+    _bind_special_fn "\\eff2." '__find_and_select_file_and_cd_and_edit__ ../..'
+    _bind_special_fn "\\eff3." '__find_and_select_file_and_cd_and_edit__ ../../..'
+    _bind_special_fn "\\eff4." '__find_and_select_file_and_cd_and_edit__ ../../../..'
+    _bind_special_fn "\\eff5." '__find_and_select_file_and_cd_and_edit__ ../../../../..'
+    _bind_special_fn "\\eff6." '__find_and_select_file_and_cd_and_edit__ ../../../../../..'
+    _bind_special_fn "\\eff7." '__find_and_select_file_and_cd_and_edit__ ../../../../../../..'
+    _bind_special_fn "\\eff8." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../..'
+    _bind_special_fn "\\eff9." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
+    _bind_special_fn "\\eff~"  '__find_and_select_file_and_cd_and_edit__ $HOME'
 
-    # Alt-g d <location>: *G*o to found *d*irectory path: change to selected directory
+    # Alt-f d <location>: Find directory
 
-    _bind_special_fn "\\egd."  '__find_and_select_dir_and_cd__ .'
-    _bind_special_fn "\\egd1." '__find_and_select_dir_and_cd__ ..'
-    _bind_special_fn "\\egd2." '__find_and_select_dir_and_cd__ ../..'
-    _bind_special_fn "\\egd3." '__find_and_select_dir_and_cd__ ../../..'
-    _bind_special_fn "\\egd4." '__find_and_select_dir_and_cd__ ../../../..'
-    _bind_special_fn "\\egd5." '__find_and_select_dir_and_cd__ ../../../../..'
-    _bind_special_fn "\\egd6." '__find_and_select_dir_and_cd__ ../../../../../..'
-    _bind_special_fn "\\egd7." '__find_and_select_dir_and_cd__ ../../../../../../..'
-    _bind_special_fn "\\egd8." '__find_and_select_dir_and_cd__ ../../../../../../../..'
-    _bind_special_fn "\\egd9." '__find_and_select_dir_and_cd__ ../../../../../../../../../'
-    _bind_special_fn "\\egd~"  '__find_and_select_dir_and_cd__ $HOME'
+    _bind_special_fn "\\efd."  '__find_and_select_dir_and_cd__ .'
+    _bind_special_fn "\\efd1." '__find_and_select_dir_and_cd__ ..'
+    _bind_special_fn "\\efd2." '__find_and_select_dir_and_cd__ ../..'
+    _bind_special_fn "\\efd3." '__find_and_select_dir_and_cd__ ../../..'
+    _bind_special_fn "\\efd4." '__find_and_select_dir_and_cd__ ../../../..'
+    _bind_special_fn "\\efd5." '__find_and_select_dir_and_cd__ ../../../../..'
+    _bind_special_fn "\\efd6." '__find_and_select_dir_and_cd__ ../../../../../..'
+    _bind_special_fn "\\efd7." '__find_and_select_dir_and_cd__ ../../../../../../..'
+    _bind_special_fn "\\efd8." '__find_and_select_dir_and_cd__ ../../../../../../../..'
+    _bind_special_fn "\\efd9." '__find_and_select_dir_and_cd__ ../../../../../../../../../'
+    _bind_special_fn "\\efd~"  '__find_and_select_dir_and_cd__ $HOME'
 
-    # Alt-g g <location>: *G*o to *g*repped file path: change to selected file's directory and edit it
+    # Alt-g f <location>: Grep for file
 
-    _bind_special_fn "\\egg."  '__grep_and_select_file_and_cd_and_edit__ .'
-    _bind_special_fn "\\egg1." '__grep_and_select_file_and_cd_and_edit__ ..'
-    _bind_special_fn "\\egg2." '__grep_and_select_file_and_cd_and_edit__ ../..'
-    _bind_special_fn "\\egg3." '__grep_and_select_file_and_cd_and_edit__ ../../..'
-    _bind_special_fn "\\egg4." '__grep_and_select_file_and_cd_and_edit__ ../../../..'
-    _bind_special_fn "\\egg5." '__grep_and_select_file_and_cd_and_edit__ ../../../../..'
-    _bind_special_fn "\\egg6." '__grep_and_select_file_and_cd_and_edit__ ../../../../../..'
-    _bind_special_fn "\\egg7." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\egg8." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\egg9." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\egg~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
+    _bind_special_fn "\\egf."  '__grep_and_select_file_and_cd_and_edit__ .'
+    _bind_special_fn "\\egf1." '__grep_and_select_file_and_cd_and_edit__ ..'
+    _bind_special_fn "\\egf2." '__grep_and_select_file_and_cd_and_edit__ ../..'
+    _bind_special_fn "\\egf3." '__grep_and_select_file_and_cd_and_edit__ ../../..'
+    _bind_special_fn "\\egf4." '__grep_and_select_file_and_cd_and_edit__ ../../../..'
+    _bind_special_fn "\\egf5." '__grep_and_select_file_and_cd_and_edit__ ../../../../..'
+    _bind_special_fn "\\egf6." '__grep_and_select_file_and_cd_and_edit__ ../../../../../..'
+    _bind_special_fn "\\egf7." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../..'
+    _bind_special_fn "\\egf8." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../..'
+    _bind_special_fn "\\egf9." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
+    _bind_special_fn "\\egf~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
     _bind_special_fn "\\egh"  '__grep_and_select_file_and_cd_and_edit__ . --smart-case --no-ignore-vcs --hidden'
 
-    # Alt-g r f: *G*o to *r*ecent file path: change to selected file's directory and edit it
+    # Alt-r f: Recent file
 
-    _bind_special_fn "\\egrf" __f_select_frecent_file_and_cd_and_edit__
+    _bind_special_fn "\\erf" __f_select_frecent_file_and_cd_and_edit__
 
-    # Alt-g r d: *G*o to *r*ecent directory path: change to selected directory
+    # Alt-r d: Recent direcetory
 
-    _bind_special_fn "\\egrd" __f_select_frecent_dir_and_cd__
+    _bind_special_fn "\\erd" __f_select_frecent_dir_and_cd__
 
-    # Alt-e f <location>: *E*dit *f*ound file (without changing directory)
+    # Alt-F <location>: Like Alt-f, but without changing working directory
 
-    _bind_special_fn "\\eef."  '__find_and_select_file_and_edit__ .'
-    _bind_special_fn "\\eef1." '__find_and_select_file_and_edit__ ..'
-    _bind_special_fn "\\eef2." '__find_and_select_file_and_edit__ ../..'
-    _bind_special_fn "\\eef3." '__find_and_select_file_and_edit__ ../../..'
-    _bind_special_fn "\\eef4." '__find_and_select_file_and_edit__ ../../../..'
-    _bind_special_fn "\\eef5." '__find_and_select_file_and_edit__ ../../../../..'
-    _bind_special_fn "\\eef6." '__find_and_select_file_and_edit__ ../../../../../..'
-    _bind_special_fn "\\eef7." '__find_and_select_file_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\eef8." '__find_and_select_file_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\eef9." '__find_and_select_file_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\eef~"  '__find_and_select_file_and_edit__ $HOME'
+    _bind_special_fn "\\eeF."  '__find_and_select_file_and_edit__ .'
+    _bind_special_fn "\\eeF1." '__find_and_select_file_and_edit__ ..'
+    _bind_special_fn "\\eeF2." '__find_and_select_file_and_edit__ ../..'
+    _bind_special_fn "\\eeF3." '__find_and_select_file_and_edit__ ../../..'
+    _bind_special_fn "\\eeF4." '__find_and_select_file_and_edit__ ../../../..'
+    _bind_special_fn "\\eeF5." '__find_and_select_file_and_edit__ ../../../../..'
+    _bind_special_fn "\\eeF6." '__find_and_select_file_and_edit__ ../../../../../..'
+    _bind_special_fn "\\eeF7." '__find_and_select_file_and_edit__ ../../../../../../..'
+    _bind_special_fn "\\eeF8." '__find_and_select_file_and_edit__ ../../../../../../../..'
+    _bind_special_fn "\\eeF9." '__find_and_select_file_and_edit__ ../../../../../../../../../'
+    _bind_special_fn "\\eeF~"  '__find_and_select_file_and_edit__ $HOME'
 
-    # Alt-e g <location>: *E*dit *g*repped file (without changing directory)
+    # Alt-G <location>: Like Alt-g, but without changing working directory
 
-    _bind_special_fn "\\eeg."  '__grep_and_select_file_and_edit__ .'
-    _bind_special_fn "\\eeg1." '__grep_and_select_file_and_edit__ ..'
-    _bind_special_fn "\\eeg2." '__grep_and_select_file_and_edit__ ../..'
-    _bind_special_fn "\\eeg3." '__grep_and_select_file_and_edit__ ../../..'
-    _bind_special_fn "\\eeg4." '__grep_and_select_file_and_edit__ ../../../..'
-    _bind_special_fn "\\eeg5." '__grep_and_select_file_and_edit__ ../../../../..'
-    _bind_special_fn "\\eeg6." '__grep_and_select_file_and_edit__ ../../../../../..'
-    _bind_special_fn "\\eeg7." '__grep_and_select_file_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\eeg8." '__grep_and_select_file_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\eeg9." '__grep_and_select_file_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\eeg~"  '__grep_and_select_file_and_edit__ $HOME'
+    _bind_special_fn "\\eeG."  '__grep_and_select_file_and_edit__ .'
+    _bind_special_fn "\\eeG1." '__grep_and_select_file_and_edit__ ..'
+    _bind_special_fn "\\eeG2." '__grep_and_select_file_and_edit__ ../..'
+    _bind_special_fn "\\eeG3." '__grep_and_select_file_and_edit__ ../../..'
+    _bind_special_fn "\\eeG4." '__grep_and_select_file_and_edit__ ../../../..'
+    _bind_special_fn "\\eeG5." '__grep_and_select_file_and_edit__ ../../../../..'
+    _bind_special_fn "\\eeG6." '__grep_and_select_file_and_edit__ ../../../../../..'
+    _bind_special_fn "\\eeG7." '__grep_and_select_file_and_edit__ ../../../../../../..'
+    _bind_special_fn "\\eeG8." '__grep_and_select_file_and_edit__ ../../../../../../../..'
+    _bind_special_fn "\\eeG9." '__grep_and_select_file_and_edit__ ../../../../../../../../../'
+    _bind_special_fn "\\eeG~"  '__grep_and_select_file_and_edit__ $HOME'
 
-    # Alt-e r f: *E*dit *r*ecent file (without changing directory)
+    # Alt-R f: Like Alt-r, but without changing directory
 
-    _bind_special_fn "\\eerf" __f_select_frecent_file_edit__
+    _bind_special_fn "\\eeRf" __f_select_frecent_file_edit__
 
     # Alt-p f <location>: *P*ut found filepath: print selected file path on the command line
 
@@ -595,7 +595,7 @@ function bind_fuzzy_functions() {
     _bind_special_cmdline_fn1 "\\epf9." '__find_and_select_file__ ../../../../../../../../../ multi'
     _bind_special_cmdline_fn1 "\\epf~"  '__find_and_select_file__ $HOME multi'
 
-    # Alt-p f <location>: *P*ut found directory: print selected directory path on the command line
+    # Alt-p d <location>: *P*ut found directory: print selected directory path on the command line
 
     _bind_special_cmdline_fn1 "\\epd."  '__find_and_select_dir__ . multi'
     _bind_special_cmdline_fn1 "\\epd1." '__find_and_select_dir__ .. multi'
@@ -609,7 +609,7 @@ function bind_fuzzy_functions() {
     _bind_special_cmdline_fn1 "\\epd9." '__find_and_select_dir__ ../../../../../../../../../ multi'
     _bind_special_cmdline_fn1 "\\epd~"  '__find_and_select_dir__ $HOME multi'
 
-    # Alt-p r *: *P*ut *r*ecent *c*ommands, *f*ilepaths, or *d*irectories on the command line
+    # Alt-p r: *P*ut *r*ecent *c*ommands, *f*ilepaths, or *d*irectories on the command line
 
     _bind_special_cmdline_fn1 "\\erc" __f_select_and_print_history__
     _bind_special_cmdline_fn1 "\\epc" __f_select_and_print_history__
@@ -617,19 +617,19 @@ function bind_fuzzy_functions() {
     _bind_special_cmdline_fn1 "\\eprf" __find_and_select_frecent_file__
     _bind_special_cmdline_fn1 "\\eprd" __find_and_select_frecent_dir__
 
-    # Alt-o f <location>: *O*pen (using default app) *f*ound file (without changing directory)
+    # Alt-o <location>: *O*pen (using default app) *f*ound file (without changing directory)
 
-    _bind_special_fn "\\eof."  '__find_and_select_file_and_open__ .'
-    _bind_special_fn "\\eof1." '__find_and_select_file_and_open__ ..'
-    _bind_special_fn "\\eof2." '__find_and_select_file_and_open__ ../..'
-    _bind_special_fn "\\eof3." '__find_and_select_file_and_open__ ../../..'
-    _bind_special_fn "\\eof4." '__find_and_select_file_and_open__ ../../../..'
-    _bind_special_fn "\\eof5." '__find_and_select_file_and_open__ ../../../../..'
-    _bind_special_fn "\\eof6." '__find_and_select_file_and_open__ ../../../../../..'
-    _bind_special_fn "\\eof7." '__find_and_select_file_and_open__ ../../../../../../..'
-    _bind_special_fn "\\eof8." '__find_and_select_file_and_open__ ../../../../../../../..'
-    _bind_special_fn "\\eof9." '__find_and_select_file_and_open__ ../../../../../../../../../'
-    _bind_special_fn "\\eof~"  '__find_and_select_file_and_open__ $HOME'
+    _bind_special_fn "\\eo."  '__find_and_select_file_and_open__ .'
+    _bind_special_fn "\\eo1." '__find_and_select_file_and_open__ ..'
+    _bind_special_fn "\\eo2." '__find_and_select_file_and_open__ ../..'
+    _bind_special_fn "\\eo3." '__find_and_select_file_and_open__ ../../..'
+    _bind_special_fn "\\eo4." '__find_and_select_file_and_open__ ../../../..'
+    _bind_special_fn "\\eo5." '__find_and_select_file_and_open__ ../../../../..'
+    _bind_special_fn "\\eo6." '__find_and_select_file_and_open__ ../../../../../..'
+    _bind_special_fn "\\eo7." '__find_and_select_file_and_open__ ../../../../../../..'
+    _bind_special_fn "\\eo8." '__find_and_select_file_and_open__ ../../../../../../../..'
+    _bind_special_fn "\\eo9." '__find_and_select_file_and_open__ ../../../../../../../../../'
+    _bind_special_fn "\\eo~"  '__find_and_select_file_and_open__ $HOME'
 
 
 }
