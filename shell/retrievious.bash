@@ -539,7 +539,7 @@ function bind_fuzzy_functions() {
     _bind_special_fn "\\egf8." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../..'
     _bind_special_fn "\\egf9." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
     _bind_special_fn "\\egf~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
-    _bind_special_fn "\\egh"  '__grep_and_select_file_and_cd_and_edit__ . --smart-case --no-ignore-vcs --hidden'
+    _bind_special_fn "\\egfh"  '__grep_and_select_file_and_cd_and_edit__ . --smart-case --no-ignore-vcs --hidden'
 
     # Alt-r f: Recent file
 
