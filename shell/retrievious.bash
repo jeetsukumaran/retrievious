@@ -251,8 +251,9 @@ function __grep_and_select_file_rg__() {
         FZF_DEFAULT_COMMAND="${RG_PREFIX} '${INITIAL_QUERY}'" \
         fzf \
         --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
-        --bind "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query" \
-        --prompt '1. ripgrep> ' \
+        --bind "alt-f:change-prompt(fuzzy>)+enable-search+clear-query" \
+        --bind "alt-r:change-prompt(regex>)+disable-search+clear-query" \
+        --prompt 'regex> ' \
         --ansi \
         --disabled \
         --delimiter : \
@@ -260,7 +261,6 @@ function __grep_and_select_file_rg__() {
         --header=":::$(pwd):::" \
         --phony \
         --inline-info \
-        -m \
         --preview 'bat --color=always {1} --highlight-line {2}' \
         --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
     )
