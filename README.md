@@ -45,67 +45,63 @@ It mostly consists of 4-word combinations that express:
 ### Example workflow
 
 -   In either your shell OR your editor:
-    -   Type `<Alt-e>f.` (="Edit File found from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current working directory as the root of the search.
-    -   Type `<Alt-e>f2.` (="Edit File found from *2* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the directory two levels up from the current as the root of the search.
-    -   Type `<Alt-e>f~` (="Edit File found from '`~`' ") as above, but start search in home directory.
-    -   Type `<Alt-e>rf` (="Edit Recent File") to pull up a fuzzy finder dialog that lets you select a "frecent" file by name to open up in your editor, with the current directory as the root of the search.
-    -   Type `<Alt-e>g.` (="Grep for file contents from '`.`'") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the current directory as the root of the search.
-    -   Type `<Alt-e>g4.` (="Grep for file contents from *4* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the directory four levels up from the currentas the root of the search.
-    -   Type `<Alt-e>g~` (="Grep for file contents from '`~`'") as above, but start search in home directory.
+    - Type `<Alt-f>f.`  (="Find file from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current working directory as the root of the search.
+    - Type `<Alt-f>f2.` (="Find file from *2* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the directory two levels up from the current as the root of the search.
+    - Type `<Alt-f>f~`  (="Find file from '`~`' ") as above, but start search in home directory.
+    - Type `<Alt-r>f`   (="Recent File") to pull up a fuzzy finder dialog that lets you select a "frecent" file by name to open up in your editor, with the current directory as the root of the search.
+    - Type `<Alt-g>.`   (="Grep for file contents from '`.`'") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the current directory as the root of the search.
+    - Type `<Alt-g>4.`  (="Grep for file contents from *4* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the directory four levels up from the currentas the root of the search.
+    - Type `<Alt-g>~`   (="Grep for file contents from '`~`'") as above, but start search in home directory.
 -   Additional shell-specific functionality:
-    -   Type `<Alt-g>d.` (="Go to Directory found from '`.`'") to pull up a fuzzy finder to select a directory by name to change to, with search starting from the current working directory.
-    -   Type `<Alt-g>d~` (="Go to Directory found from '`~`'") as above, but start search from home directory.
-    -   Type `<Alt-g>rd` (="Go to Recent Directory) as above, but search "frecent" directories.
-    -   Type `<Alt-g>f.` (="Go to file found from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current directory as the root of the search. Your shell instance will change its working directory to the directory of the file.
-    -   Type `<Alt-g>f3.` (="Go to file found from *3* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the directory 3 levels up from the current as the root of the search. Your shell instance will change its working directory to the directory of the file.
-    -   Type `<Alt-g>rf` (="Go to Recent File) as above, but for "frecent" files.
+    -   Type `<Alt-f>d.` (="Find directory from '`.`'") to pull up a fuzzy finder to select a directory by name to change to, with search starting from the current working directory.
+    -   Type `<Alt-f>d~` (="Find drectory from '`~`'") as above, but start search from home directory.
+    -   Type `<Alt-r>d` (="Recent directory") as above, but search "frecent" directories.
 
 There are a number of other functionalities, including variants of above, which allow you to specify a relative parent directory to start the search (e.g., ``<Alt-g>f3.`` to start the search three directory levels up), as well as custom functionality to put/paste the retreived result onto the command line in the shell or content lines into the buffer in the editor.
 
 ### In Detail
 
-#### `<Alt-e>` for "Edit" (in-situ)
+The Retrievious "grammar" consists of three keystrokes, specifying, in order: the search mode, the search object, and the search location.
 
-`<Alt-e>`: **E**dit the selected item(s): open selected file(s) in editor (without changing the directory).
--   `f`: **f**ile(s) found by matching on name
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `d`: a **d**irectory found by matching on name
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `g`: by **g**repping for a file by contents
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `r`: by **r**ecalling a "frecently" used
-    -   `f`: **f**ile
-    -   `d`: **d**irectory
-    -   `c`: **c**command
+-   The first keystroke is you specifying one the following three search modes:
 
-| Key Sequence | With Count      | Search Type                | Starting Search             | Shell Action             | Editor Action |
-|:-------------|:----------------|:---------------------------|:----------------------------|:-------------------------|:--------------|
-| `<Alt-e>f~`  |                 | Find file                  | home                        | Edit selected without cd | Open file     |
-| `<Alt-e>f.`  |                 | Find file                  | cwd                         | Edit selected without cd | Open file     |
-|              | `<Alt-e> f 1 .` | Find file                  | 1 dir up from cwd           | Edit selected without cd | Open file     |
-|              | `<Alt-e> f 2 .` | Find file                  | 2 dirs up from cwd          | Edit selected without cd | Open file     |
-|              | `<Alt-e> f 3 .` | Find file                  | 3 dirs up from cwd          | Edit selected without cd | Open file     |
-|              | etc.            | etc.                       | etc.                        | etc.                     | etc.          |
-| `<Alt-e>g.`  |                 | Grep for file by content   | cwd                         | Edit selected without cd | Open file     |
-|              | `<Alt-e> g 1 .` | Grep for file by content   | 1 dir up from cwd           | Edit selected without cd | Open file     |
-|              | `<Alt-e> g 2 .` | Grep for file by content   | 2 dirs up from cwd          | Edit selected without cd | Open file     |
-|              | `<Alt-e> g 3 .` | Grep for file by content   | 3 dirs up from cwd          | Edit selected without cd | Open file     |
-|              | etc.            | etc.                       | etc.                        | etc.                     | etc.          |
-| `<Alt-e>g~`  |                 | Grep for file by content   | home                        | Edit selected without cd | Open file     |
-| `<Alt-e>g%`  |                 | Grep for buffer by content | Directory of current buffer |                          | Open buffer   |
-| `<Alt-e>gb`  |                 | Grep for buffer by content |                             |                          | Open buffer   |
-| `<Alt-e>rf`  |                 | Recall "(f)recent" file    |                             |                          | Open file     |
-| `<Alt-e>b`   |                 | Find buffer                |                             |                          | Open buffer   |
+    1.   `<Alt-f>` for "Find": this begins the process of searching for a file or directory in the filesystem by matching it's name.
+    2.   `<Alt-g>` for "Grep": this begins the process of searching for a file in the filesystem by matching its content.
+    3.   `<Alt-r>` for "Recent": this begins the process of searching for a recently used file or visted directory by matching it's name.
 
-#### `<Alt-g>` for "Go" (and Edit)
+-   The second keystroke indicates whether it is a file or directory being searched for:
 
-As above, but, in the shell, will *change* to the directory of the selected file before opening it up in the editor.
+    -   `f` for "file"
+    -   `d` for "directory"
+
+-   When the third keystroke (or keystrokes) specifies the location that the search starts in:
+
+    -   (1) and (2) can take an optional single-digit *count* before which specifies the number of levels up from the current working directory the search will begin.
+        E.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working diretory; etc..
+
+    -   Instead of `[count].` , `~` starts the search from the home directory
+
+The following summarizes the basic commands and key mappings:
+
+| Key Sequence | With Count      | Search Type                | Starting Search             |
+|:-------------|:----------------|:---------------------------|:----------------------------|
+| `<Alt-f>f~`  |                 | Find file                  | home                        |
+| `<Alt-f>f.`  |                 | Find file                  | cwd                         |
+|              | `<Alt-e> f 1 .` | Find file                  | 1 dir up from cwd           |
+|              | `<Alt-e> f 2 .` | Find file                  | 2 dirs up from cwd          |
+|              | `<Alt-e> f 3 .` | Find file                  | 3 dirs up from cwd          |
+|              | etc.            | etc.                       | etc.                        |
+| `<Alt-g>f.`  |                 | Grep for file by content   | cwd                         |
+|              | `<Alt-e> g 1 .` | Grep for file by content   | 1 dir up from cwd           |
+|              | `<Alt-e> g 2 .` | Grep for file by content   | 2 dirs up from cwd          |
+|              | `<Alt-e> g 3 .` | Grep for file by content   | 3 dirs up from cwd          |
+|              | etc.            | etc.                       | etc.                        |
+| `<Alt-e>g~`  |                 | Grep for file by content   | home                        |
+| `<Alt-e>g%`  |                 | Grep for buffer by content | Directory of current buffer |
+| `<Alt-e>gb`  |                 | Grep for buffer by content |                             |
+| `<Alt-e>rf`  |                 | Recall "(f)recent" file    |                             |
+| `<Alt-e>b`   |                 | Find buffer                |                             |
+
 
 #### `<Alt-p>` for "Put" (or "Paste")
 
