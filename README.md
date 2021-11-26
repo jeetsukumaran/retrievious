@@ -22,17 +22,15 @@ It mostly consists of 4-word combinations that express:
 -   [fzf](https://github.com/junegunn/fzf)
 -   [ripgrep](https://github.com/BurntSushi/ripgrep)
 -   [fasd](https://github.com/clvv/fasd)
+-   [bat](https://github.com/sharkdp/bat)
 
 ### Neovim Plugins
 
-#### Required (Core)
+#### Required
 
 -   [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 -   [plenary](https://github.com/nvim-lua/plenary.nvim)
 -   [popup](https://github.com/nvim-lua/popup.nvim)
-
-#### Required (Extensions)
-
 -   [telescope-grab-lines](https://github.com/jeetsukumaran/telescope-grab-lines.nvim)
 
 #### Recommended
