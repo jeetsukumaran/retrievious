@@ -191,7 +191,7 @@ function __f_select_dir__() {
     # fzf --preview='ls -l --color=always {}' --preview-window=up:50 -1 --inline-info --ansi
     [[ -n "$1" ]] && local header="--header=$1" || local header=""
     # export -f llc # make function available in subshell
-    fzf --preview="ls -l '{}'" --preview-window=up:50 -1 --inline-info --ansi $header | __f_regularize_paths__
+    fzf --preview="ls -la {}" --preview-window=up:50 -1 --inline-info --ansi $header | __f_regularize_paths__
 }
 # }}}2
 
