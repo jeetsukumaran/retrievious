@@ -636,3 +636,14 @@ function bind_fuzzy_functions() {
 bind_fuzzy_functions
 
 # }}}1
+
+# Special Commands {{{1
+function ef() {
+    [[ -n "$1" ]] && local dir="$1" || local dir="."
+    # __find_and_select_file__ ${dir} multi
+    cmd="$(__find_and_select_file_and_edit__ ${dir} multi)"
+    echo $cmd
+    eval $cmd
+}
+# }}}1 Special Commands
+
