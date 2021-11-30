@@ -34,7 +34,6 @@ then
 fi
 # }}}1
 
-
 # Main Service Functions {{{1
 
 # Candidate Population Functions {{{2
