@@ -40,7 +40,13 @@ It mostly consists of 4-word combinations that express:
 
 ##  Interface
 
-### Example workflow
+### MVP Commands
+
+- Type `<Alt-Shift-F>` to pull up a fuzzy finder dialog to find a file by name to edit, with the *home directory* as the root of the search.
+- Type `<Alt-Shift-D>`  to pull up a fuzzy finder dialog to find a directory by name to open up in your editor, with the *home directory* as the root of the search.
+- Type `<Alt-Shift-G>`  to pull up a fuzzy finder dialog to grep for a file to edit, with the *home directory* as the root of the search.
+
+### Best Supporting Commands
 
 -   In either your shell OR your editor:
     - Type `<Alt-f>f.`  (="Find file from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current working directory as the root of the search.

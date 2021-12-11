@@ -64,6 +64,7 @@ function! s:_set_find_and_grep_keymaps()
 endfunction
 call s:_set_find_and_grep_keymaps()
 
+nnoremap <M-S-f> <cmd>:lua require('telescope.builtin').find_files({cwd="~", prompt_title="~"})<CR>
 nnoremap <M-f>f~ <cmd>:lua require('telescope.builtin').find_files({cwd="~", prompt_title="~"})<CR>
 nnoremap <M-g>f~ <cmd>:lua _telescope_grep({cwd="~", prompt_title="~"})<CR>
 nnoremap <M-p>l~ <cmd>:Telescope grab_lines cwd=~<CR>

@@ -498,6 +498,13 @@ function bind_fuzzy_functions() {
         bind '"\e^": history-expand-line'
     fi
 
+    # Alt-F: Find and edit file, search from $HOME
+    _bind_special_fn "\\eF"  '__find_and_select_file_and_cd_and_edit__ $HOME'
+    # Alt-D: Go to directory, search from $HOME
+    _bind_special_fn "\\eD"  '__find_and_select_dir_and_cd__ $HOME'
+    # Alt-G: Grep for file, search from $HOME
+    _bind_special_fn "\\eG"  '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
+
     # Alt-f f <location>: Find file
 
     _bind_special_fn "\\eff."  '__find_and_select_file_and_cd_and_edit__ .'
@@ -551,35 +558,35 @@ function bind_fuzzy_functions() {
 
     # Alt-F <location>: Like Alt-f, but without changing working directory
 
-    _bind_special_fn "\\eeF."  '__find_and_select_file_and_edit__ .'
-    _bind_special_fn "\\eeF1." '__find_and_select_file_and_edit__ ..'
-    _bind_special_fn "\\eeF2." '__find_and_select_file_and_edit__ ../..'
-    _bind_special_fn "\\eeF3." '__find_and_select_file_and_edit__ ../../..'
-    _bind_special_fn "\\eeF4." '__find_and_select_file_and_edit__ ../../../..'
-    _bind_special_fn "\\eeF5." '__find_and_select_file_and_edit__ ../../../../..'
-    _bind_special_fn "\\eeF6." '__find_and_select_file_and_edit__ ../../../../../..'
-    _bind_special_fn "\\eeF7." '__find_and_select_file_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\eeF8." '__find_and_select_file_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\eeF9." '__find_and_select_file_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\eeF~"  '__find_and_select_file_and_edit__ $HOME'
+    # _bind_special_fn "\\eF."  '__find_and_select_file_and_edit__ .'
+    # _bind_special_fn "\\eF1." '__find_and_select_file_and_edit__ ..'
+    # _bind_special_fn "\\eF2." '__find_and_select_file_and_edit__ ../..'
+    # _bind_special_fn "\\eF3." '__find_and_select_file_and_edit__ ../../..'
+    # _bind_special_fn "\\eF4." '__find_and_select_file_and_edit__ ../../../..'
+    # _bind_special_fn "\\eF5." '__find_and_select_file_and_edit__ ../../../../..'
+    # _bind_special_fn "\\eF6." '__find_and_select_file_and_edit__ ../../../../../..'
+    # _bind_special_fn "\\eF7." '__find_and_select_file_and_edit__ ../../../../../../..'
+    # _bind_special_fn "\\eF8." '__find_and_select_file_and_edit__ ../../../../../../../..'
+    # _bind_special_fn "\\eF9." '__find_and_select_file_and_edit__ ../../../../../../../../../'
+    # _bind_special_fn "\\eF~"  '__find_and_select_file_and_edit__ $HOME'
 
     # Alt-G <location>: Like Alt-g, but without changing working directory
 
-    _bind_special_fn "\\eeG."  '__grep_and_select_file_and_edit__ .'
-    _bind_special_fn "\\eeG1." '__grep_and_select_file_and_edit__ ..'
-    _bind_special_fn "\\eeG2." '__grep_and_select_file_and_edit__ ../..'
-    _bind_special_fn "\\eeG3." '__grep_and_select_file_and_edit__ ../../..'
-    _bind_special_fn "\\eeG4." '__grep_and_select_file_and_edit__ ../../../..'
-    _bind_special_fn "\\eeG5." '__grep_and_select_file_and_edit__ ../../../../..'
-    _bind_special_fn "\\eeG6." '__grep_and_select_file_and_edit__ ../../../../../..'
-    _bind_special_fn "\\eeG7." '__grep_and_select_file_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\eeG8." '__grep_and_select_file_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\eeG9." '__grep_and_select_file_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\eeG~"  '__grep_and_select_file_and_edit__ $HOME'
+    # _bind_special_fn "\\eG."  '__grep_and_select_file_and_edit__ .'
+    # _bind_special_fn "\\eG1." '__grep_and_select_file_and_edit__ ..'
+    # _bind_special_fn "\\eG2." '__grep_and_select_file_and_edit__ ../..'
+    # _bind_special_fn "\\eG3." '__grep_and_select_file_and_edit__ ../../..'
+    # _bind_special_fn "\\eG4." '__grep_and_select_file_and_edit__ ../../../..'
+    # _bind_special_fn "\\eG5." '__grep_and_select_file_and_edit__ ../../../../..'
+    # _bind_special_fn "\\eG6." '__grep_and_select_file_and_edit__ ../../../../../..'
+    # _bind_special_fn "\\eG7." '__grep_and_select_file_and_edit__ ../../../../../../..'
+    # _bind_special_fn "\\eG8." '__grep_and_select_file_and_edit__ ../../../../../../../..'
+    # _bind_special_fn "\\eG9." '__grep_and_select_file_and_edit__ ../../../../../../../../../'
+    # _bind_special_fn "\\eG~"  '__grep_and_select_file_and_edit__ $HOME'
 
     # Alt-R f: Like Alt-r, but without changing directory
 
-    _bind_special_fn "\\eeRf" __f_select_frecent_file_edit__
+    # _bind_special_fn "\\eeRf" __f_select_frecent_file_edit__
 
     # Alt-p f <location>: *P*ut found filepath: print selected file path on the command line
 
