@@ -99,54 +99,6 @@ set -o vi # This needs to come before sourcing so that vi key bindings are corre
 source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 ```
 
-## Keybindings
-
-### Filesystem Retrievals for Editing/Opening
-
-| Key                    | Search | For  | From                               | S? | E? |
-|:-----------------------|:-------|:-----|:-----------------------------------|:---|:---|
-| **Find File**          |        |      |                                    |    |    |
-| `<Alt-r>~`             | Find   | file | `$HOME`                            | Y  | Y  |
-| `<Alt-r>.`             | Find   | file | cwd                                | Y  | Y  |
-| `<Alt-r>`*[count]*`.`  | Find   | file | *[count]* up from cwd              | Y  | Y  |
-| `<Alt-r>%`             | Find   | file | Buffer local dir                   | N  | Y  |
-| `<Alt-r>`*[count]*`%`  | Find   | file | *[count]* up from buffer local dir | N  | Y  |
-| **Find Dirs**          |        |      |                                    |    |    |
-| `<Alt-r>d~`            | Find   | dir  | `$HOME`                            | Y  | *  |
-| `<Alt-r>d.`            | Find   | dir  | cwd                                | Y  | *  |
-| `<Alt-r>`*[count]*`d.` | Find   | dir  | *[count]* up from cwd              | Y  | *  |
-| **Grep Text**          |        |      |                                    |    |    |
-| `<Alt-r>g~`            | Grep   | text | `$HOME`                            | Y  | Y  |
-| `<Alt-r>g.`            | Grep   | text | cwd                                | Y  | Y  |
-| `<Alt-r>g`*[count]*`.` | Grep   | text | *[count]* up from cwd              | Y  | Y  |
-| `<Alt-r>g%`            | Grep   | text | Buffer local dir                   | N  | Y  |
-| `<Alt-r>g`*[count]*`%` | Grep   | text | *[count]* up from buffer local dir | N  | Y  |
-| **Find Lines**         |        |      |                                    |    |    |
-| `<Alt-r>l`             | Find   | line | Current buffer                     | N  | Y  |
-
-### Filesystem Path Retrievals for Pasting/Putting
-
-| Key                     | Search | For      | From                  | S? | E? |
-|:------------------------|:-------|:---------|:----------------------|:---|:---|
-| `<Alt-r>pf~`            | Find   | file     | `$HOME`               | *  | *  |
-| `<Alt-r>pf.`            | Find   | file     | cwd                   | Y  | Y  |
-| `<Alt-r>pf`*[count]*`.` | Find   | file     | *[count]* up from cwd | Y  | Y  |
-| `<Alt-r>pd~`            | Find   | dir      | `$HOME`               | Y  | *  |
-| `<Alt-r>pd.`            | Find   | dir      | cwd                   | Y  | ?  |
-| `<Alt-r>pd`*[count]*`.` | Find   | dir      | *[count]* up from cwd | Y  | ?  |
-| `<Alt-r>pc`             | Find   | commands | cwd                   | Y  | ?  |
-
-### Frecent Retrievals
-
-| Key         | Target    | S? | E? | Action  |
-|:------------|:----------|:---|:---|---------|
-| `<Alt-r>rf` | file      | Y  | Y  | Cd/Edit |
-| `<Alt-r>rd` | directory | Y  | *  | Cd/Edit |
-| `<Alt-r>rc` | commands  | Y  | -  | Cd/Edit |
-| `<Alt-r>prf` | file      | Y  | Y  | Paste   |
-| `<Alt-r>prd` | directory | Y  | *  | Paste   |
-| `<Alt-r>prc` | commands  | Y  | -  | Paste   |
-
 ## Appendices
 
 ### Index of Key Sequences
@@ -164,10 +116,12 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>7.`
 - `<alt-r>8.`
 - `<alt-r>9.`
+- `<alt-r><alt-f>`
+    -   Searches for a file to visit, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
 
 #### 1.1.2. Retrieve [to visit]: [Find] Directory
 
-- `<alt-r>d~`
+- `<alt-r>d~`,
 - `<alt-r>d.`
 - `<alt-r>d1.`
 - `<alt-r>d2.`
@@ -178,6 +132,8 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>d7.`
 - `<alt-r>d8.`
 - `<alt-r>d9.`
+- `<alt-r><alt-d>`
+    -   Searches for a directory to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
 
 #### 1.1.3. Retrieve [to visit]: [Find] Buffer
 
@@ -200,6 +156,8 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>g7.`
 - `<alt-r>g8.`
 - `<alt-r>g9.`
+- `<alt-r><alt-g>`
+    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
 
 #### 1.2.2. Retrieve [to visit]: Grep [Buffer]
 

@@ -65,6 +65,7 @@ endfunction
 
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
+call s:_set_find_and_grep_keymaps("", "<M-f>", "<SID>_find_from_cwd", "'~'")
 call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
 
