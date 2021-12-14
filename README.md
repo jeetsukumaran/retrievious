@@ -106,18 +106,13 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 #### 1.1.1. Retrieve [to visit]: [Find] [File]
 
 - `<alt-r>~`
+    -   Searches for a file to visit, using find, starting at `$HOME`.
 - `<alt-r>.`
-- `<alt-r>1.`
-- `<alt-r>2.`
-- `<alt-r>3.`
-- `<alt-r>4.`
-- `<alt-r>5.`
-- `<alt-r>6.`
-- `<alt-r>7.`
-- `<alt-r>8.`
-- `<alt-r>9.`
+    -   Searches for a file to visit, using find, starting at the current working directory.
+- `<alt-r>1.`, `<alt-r>2.`, `<alt-r>3.`, ... `<alt-r>9.`
+    -   Searches for a file to visit, using find, starting at directory 1, 2, 3, etc. directory levels up from current working directory.
 - `<alt-r><alt-f>`
-    -   Searches for a file to visit, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
+    -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT` (defaults to `$HOME`).
 
 #### 1.1.2. Retrieve [to visit]: [Find] Directory
 
