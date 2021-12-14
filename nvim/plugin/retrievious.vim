@@ -81,6 +81,7 @@ nnoremap <M-r>l :<C-u>Telescope current_buffer_fuzzy_find<CR>
 
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
+call s:_set_find_and_grep_keymaps("g", "<M-g>", "<SID>_grep_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
@@ -98,6 +99,7 @@ nnoremap <M-r>rf <cmd>Telescope oldfiles<CR>
 
 " #### 2.2.1. Retrieve to *p*aste: Lines
 call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")
+call s:_set_find_and_grep_keymaps("<M-p>l", "~", "<SID>_grab_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("pl", ".", "<SID>_grab_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("pl", "%", "<SID>_grab_up_n", "expand('%:p:h')")
 
