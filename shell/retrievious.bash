@@ -498,7 +498,7 @@ function bind_fuzzy_functions() {
         bind '"\e^": history-expand-line'
     fi
 
-    #### 1.1.1. Retrieve [to edit]: [Find] [File]
+    #### 1.1.1. Retrieve [to visit]: [Find] [File]
 
     _bind_special_fn "\\er~"  '__find_and_select_file_and_cd_and_edit__ $HOME'
     _bind_special_fn "\\er."  '__find_and_select_file_and_cd_and_edit__ .'
@@ -512,7 +512,7 @@ function bind_fuzzy_functions() {
     _bind_special_fn "\\er8." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../..'
     _bind_special_fn "\\er9." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
 
-    #### 1.1.2. Retrieve [to edit]: [Find] Directory
+    #### 1.1.2. Retrieve [to visit]: [Find] Directory
 
     _bind_special_fn "\\erd~"  '__find_and_select_dir_and_cd__ $HOME'
     _bind_special_fn "\\erd."  '__find_and_select_dir_and_cd__ .'
@@ -526,7 +526,7 @@ function bind_fuzzy_functions() {
     _bind_special_fn "\\erd8." '__find_and_select_dir_and_cd__ ../../../../../../../..'
     _bind_special_fn "\\erd9." '__find_and_select_dir_and_cd__ ../../../../../../../../../'
 
-    #### 1.2.1. Retrieve [to edit]: Grep [File]
+    #### 1.2.1. Retrieve [to visit]: Grep [File]
 
     _bind_special_fn "\\erg."  '__grep_and_select_file_and_cd_and_edit__ .'
     _bind_special_fn "\\erg1." '__grep_and_select_file_and_cd_and_edit__ ..'
@@ -541,7 +541,7 @@ function bind_fuzzy_functions() {
     _bind_special_fn "\\erg~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
     _bind_special_fn "\\ergh"  '__grep_and_select_file_and_cd_and_edit__ . --smart-case --no-ignore-vcs --hidden'
 
-    #### 1.3.1. Retrieve [to edit]: Recent
+    #### 1.3.1. Retrieve [to visit]: *R*ecent *f*iles and *d*irectories
 
     _bind_special_fn "\\errf" __f_select_frecent_file_and_cd_and_edit__
     _bind_special_fn "\\errd" __f_select_frecent_dir_and_cd__
@@ -574,13 +574,13 @@ function bind_fuzzy_functions() {
     _bind_special_cmdline_fn1 "\\erpd9." '__find_and_select_dir__ ../../../../../../../../../ multi'
     _bind_special_cmdline_fn1 "\\erpd~"  '__find_and_select_dir__ $HOME multi'
 
-    #### 2.3.1. Retrieve to *p*aste: Recent
+    #### 2.3.1. Retrieve to *p*aste: *R*ecent *f*iles, *d*irectories, and *c*ommands
 
     _bind_special_cmdline_fn1 "\\errpf" __find_and_select_frecent_file__
     _bind_special_cmdline_fn1 "\\errpd" __find_and_select_frecent_dir__
     _bind_special_cmdline_fn1 "\\errpc" __f_select_and_print_history__
 
-    #### 3.1.1. Retrieve to *o*pen
+    #### 3.1.1. Retrieve to *o*pen: [Find] [File]
 
     _bind_special_fn "\\ero~"  '__find_and_select_file_and_open__ $HOME'
     _bind_special_fn "\\ero."  '__find_and_select_file_and_open__ .'

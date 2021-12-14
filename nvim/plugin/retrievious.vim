@@ -63,12 +63,12 @@ endfunction
 
 " Key Mappings {{{1
 
-" #### 1.1.1. Retrieve [to edit]: [Find] [File]
+" #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
 call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
 
-" #### 1.1.2. Retrieve [to edit]: [Find] Directory
+" #### 1.1.2. Retrieve [to visit]: [Find] Directory
 " TODO
 
 " #### 1.1.3 Retrieve: [Find] Buffer
@@ -78,15 +78,15 @@ nnoremap <C-p> <cmd>Telescope buffers<CR>
 " #### 1.1.3 Retrieve: [Find] Lines
 nnoremap <M-r>l :<C-u>Telescope current_buffer_fuzzy_find<CR>
 
-" #### 1.2.1. Retrieve [to edit]: Grep [File]
+" #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
-" #### 1.2.2. Retrieve [to edit]: Grep [Buffer]
+" #### 1.2.2. Retrieve [to visit]: Grep [Buffer]
 nnoremap <M-r>gb <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
 
-" #### 1.3.1. Retrieve [to edit]: Recent
+" #### 1.3.1. Retrieve [to visit]: Recent
 nnoremap <M-r>rf <cmd>Telescope oldfiles<CR>
 
 " #### 2.1.1. Retrieve to *p*aste: [Find] [File]
@@ -100,8 +100,7 @@ call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("pl", ".", "<SID>_grab_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("pl", "%", "<SID>_grab_up_n", "expand('%:p:h')")
 
-" #### 2.3.1. Retrieve to *p*aste: Recent
-" TODO
+" #### 2.3.1. Retrieve to *p*aste: *R*ecent *f*iles, *d*irectories, and *c*ommands
 
 " }}}1 Key Mappings
 

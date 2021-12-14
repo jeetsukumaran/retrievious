@@ -28,9 +28,9 @@ It very quickly becomes intuitive to "speak" in this grammar to locate, for e.g.
 
 ### MVP Commands
 
-- Type `<Alt-Shift-F>` to pull up a fuzzy finder dialog to find a file by name to edit, with the *home directory* as the root of the search.
+- Type `<Alt-Shift-F>` to pull up a fuzzy finder dialog to find a file by name to visit, with the *home directory* as the root of the search.
 - Type `<Alt-Shift-D>`  to pull up a fuzzy finder dialog to find a directory by name to open up in your editor, with the *home directory* as the root of the search.
-- Type `<Alt-Shift-G>`  to pull up a fuzzy finder dialog to grep for a file to edit, with the *home directory* as the root of the search.
+- Type `<Alt-Shift-G>`  to pull up a fuzzy finder dialog to grep for a file to visit, with the *home directory* as the root of the search.
 
 ## Installation
 
@@ -151,7 +151,7 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 ### Index of Key Sequences
 
-#### 1.1.1. Retrieve [to edit]: [Find] [File]
+#### 1.1.1. Retrieve [to visit]: [Find] [File]
 
 - `<alt-r>~`
 - `<alt-r>.`
@@ -165,7 +165,7 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>8.`
 - `<alt-r>9.`
 
-#### 1.1.2. Retrieve [to edit]: [Find] Directory
+#### 1.1.2. Retrieve [to visit]: [Find] Directory
 
 - `<alt-r>d~`
 - `<alt-r>d.`
@@ -179,15 +179,15 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>d8.`
 - `<alt-r>d9.`
 
-#### 1.1.3. Retrieve [to edit]: [Find] Buffer
+#### 1.1.3. Retrieve [to visit]: [Find] Buffer
 
 - `<alt-r>b`
 
-#### 1.1.4. Retrieve [to edit]: [Find] Lines
+#### 1.1.4. Retrieve [to visit]: [Find] Lines
 
 - `<alt-r>l`
 
-#### 1.2.1. Retrieve [to edit]: Grep [File]
+#### 1.2.1. Retrieve [to visit]: Grep [File]
 
 - `<alt-r>g~`
 - `<alt-r>g.`
@@ -201,15 +201,14 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>g8.`
 - `<alt-r>g9.`
 
-#### 1.2.2. Retrieve [to edit]: Grep [Buffer]
+#### 1.2.2. Retrieve [to visit]: Grep [Buffer]
 
 - `<alt-r>gb`
 
-#### 1.3.1. Retrieve [to edit]: Recent
+#### 1.3.1. Retrieve [to visit]: *R*ecent *f*iles and *d*irectories
 
-- `<alt-r>rc`
-- `<alt-r>rd`
 - `<alt-r>rf`
+- `<alt-r>rd`
 
 #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 
@@ -253,13 +252,13 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>pl8.`
 - `<alt-r>pl9.`
 
-#### 2.3.1. Retrieve to *p*aste: Recent
+#### 2.3.1. Retrieve to *p*aste: *R*ecent *f*iles, *d*irectories, and *c*ommands
 
-- `<alt-r>prc`
-- `<alt-r>prd`
 - `<alt-r>prf`
+- `<alt-r>prd`
+- `<alt-r>prc`
 
-#### 3.1.1. Retrieve to *o*pen
+#### 3.1.1. Retrieve to *o*pen: [Find] [File]
 
 - `<alt-r>o~`
 - `<alt-r>o.`
