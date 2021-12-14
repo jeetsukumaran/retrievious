@@ -75,7 +75,7 @@ call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h
 nnoremap <M-r>b <cmd>Telescope buffers<CR>
 nnoremap <C-p> <cmd>Telescope buffers<CR>
 
-" #### 1.1.3 Retrieve: [Find] Lines
+" #### 1.1.4 Retrieve: [Find] Lines
 nnoremap <M-r>l :<C-u>Telescope current_buffer_fuzzy_find<CR>
 
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
