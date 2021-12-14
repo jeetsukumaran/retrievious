@@ -7,14 +7,6 @@ When the files provided by *Retrievious* are sourced, added to, or otherwise rea
 
 When the scripts and configuration files given by *Retrievious* are sourced, included, or otherwise loaded by your shell and editor configurations, you will be provided you with a common "grammar" n your shell and editor for specifying with surgical precision (1) what path on your filesystem you want, and (b) what you want to do with it.
 It very quickly becomes intuitive to "speak" in this grammar to locate, for e.g. a file using a fuzzy search pattern for its search, with the search starting from a directory 2 levels up from your current one, and thn, when found, change to the parent directory of the located file and open it up in your text editor.
-This grammar not only has a simple vocabulary, of only a few words, but is itself also simple.
-It mostly consists of 4-word combinations that express:
-
-```
-<action-to-be-carried-out> <object on which it is going be carried out on><how to search for the object><where to start looking for the object>
-```
-
-
 ##  Dependencies
 
 ### Shell Programs
@@ -31,121 +23,14 @@ It mostly consists of 4-word combinations that express:
 -   [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 -   [plenary](https://github.com/nvim-lua/plenary.nvim)
 -   [popup](https://github.com/nvim-lua/popup.nvim)
--   [telescope-grab-lines](https://github.com/jeetsukumaran/telescope-grab-lines.nvim)
-
-#### Recommended
-
 -   [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
-
-
-##  Interface
+-   [telescope-grab-lines](https://github.com/jeetsukumaran/telescope-grab-lines.nvim)
 
 ### MVP Commands
 
 - Type `<Alt-Shift-F>` to pull up a fuzzy finder dialog to find a file by name to edit, with the *home directory* as the root of the search.
 - Type `<Alt-Shift-D>`  to pull up a fuzzy finder dialog to find a directory by name to open up in your editor, with the *home directory* as the root of the search.
 - Type `<Alt-Shift-G>`  to pull up a fuzzy finder dialog to grep for a file to edit, with the *home directory* as the root of the search.
-
-### Best Supporting Commands
-
--   In either your shell OR your editor:
-    - Type `<Alt-f>f.`  (="Find file from '`.`' ") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the current working directory as the root of the search.
-    - Type `<Alt-f>f2.` (="Find file from *2* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by name to open up in your editor, with the directory two levels up from the current as the root of the search.
-    - Type `<Alt-f>f~`  (="Find file from '`~`' ") as above, but start search in home directory.
-    - Type `<Alt-r>f`   (="Recent File") to pull up a fuzzy finder dialog that lets you select a "frecent" file by name to open up in your editor, with the current directory as the root of the search.
-    - Type `<Alt-g>.`   (="Grep for file contents from '`.`'") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the current directory as the root of the search.
-    - Type `<Alt-g>4.`  (="Grep for file contents from *4* directory levels up") to pull up a fuzzy finder dialog that lets you select a file by grepped contents to open up in your editor, with the directory four levels up from the currentas the root of the search.
-    - Type `<Alt-g>~`   (="Grep for file contents from '`~`'") as above, but start search in home directory.
--   Additional shell-specific functionality:
-    -   Type `<Alt-f>d.` (="Find directory from '`.`'") to pull up a fuzzy finder to select a directory by name to change to, with search starting from the current working directory.
-    -   Type `<Alt-f>d~` (="Find drectory from '`~`'") as above, but start search from home directory.
-    -   Type `<Alt-r>d` (="Recent directory") as above, but search "frecent" directories.
-
-There are a number of other functionalities, including variants of above, which allow you to specify a relative parent directory to start the search (e.g., ``<Alt-g>f3.`` to start the search three directory levels up), as well as custom functionality to put/paste the retreived result onto the command line in the shell or content lines into the buffer in the editor.
-
-### In Detail
-
-The Retrievious "grammar" consists of three keystrokes, specifying, in order: the search mode, the search object, and the search location.
-
--   The first keystroke is you specifying one the following three search modes:
-
-    1.   `<Alt-f>` for "Find": this begins the process of searching for a file or directory in the filesystem by matching it's name.
-    2.   `<Alt-g>` for "Grep": this begins the process of searching for a file in the filesystem by matching its content.
-    3.   `<Alt-r>` for "Recent": this begins the process of searching for a recently used file or visted directory by matching it's name.
-
--   The second keystroke indicates whether it is a file or directory being searched for:
-
-    -   `f` for "file"
-    -   `d` for "directory"
-
--   When the third keystroke (or keystrokes) specifies the location that the search starts in:
-
-    -   (1) and (2) can take an optional single-digit *count* before which specifies the number of levels up from the current working directory the search will begin.
-        E.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working diretory; etc..
-
-    -   Instead of `[count].` , `~` starts the search from the home directory
-
-The following summarizes the basic commands and key mappings:
-
-| Key Sequence | With Count      | Search Type                | Starting Search             |
-|:-------------|:----------------|:---------------------------|:----------------------------|
-| `<Alt-f>f~`  |                 | Find file                  | home                        |
-| `<Alt-f>f.`  |                 | Find file                  | cwd                         |
-|              | `<Alt-e> f 1 .` | Find file                  | 1 dir up from cwd           |
-|              | `<Alt-e> f 2 .` | Find file                  | 2 dirs up from cwd          |
-|              | `<Alt-e> f 3 .` | Find file                  | 3 dirs up from cwd          |
-|              | etc.            | etc.                       | etc.                        |
-| `<Alt-g>f.`  |                 | Grep for file by content   | cwd                         |
-|              | `<Alt-e> g 1 .` | Grep for file by content   | 1 dir up from cwd           |
-|              | `<Alt-e> g 2 .` | Grep for file by content   | 2 dirs up from cwd          |
-|              | `<Alt-e> g 3 .` | Grep for file by content   | 3 dirs up from cwd          |
-|              | etc.            | etc.                       | etc.                        |
-| `<Alt-e>g~`  |                 | Grep for file by content   | home                        |
-| `<Alt-e>g%`  |                 | Grep for buffer by content | Directory of current buffer |
-| `<Alt-e>gb`  |                 | Grep for buffer by content |                             |
-| `<Alt-e>rf`  |                 | Recall "(f)recent" file    |                             |
-| `<Alt-e>b`   |                 | Find buffer                |                             |
-
-
-#### `<Alt-p>` for "Put" (or "Paste")
-
-`<Alt-p>`: starts **p**ulling a file, directory, or file names or content into the current context (command line or buffer)
--   `f`: find a **f**ile by name, and insert its name into the command line
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working diretory; etc.)
-    -   `~`: starts the search from the home directory
--   `d`: find a **d**irectory by name, and insert its name into the command line
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
--   `g`: find a line by **g**repping a directory, and insert it into the buffer
-    -   `.`: starts the search (by default) at the current working directory.
-        -   This can take an optional single-digit *count* before it which specifies the number of levels up from the current working directory (e.g., "1." means parent directory of the current working directory; "2." means two directory levels up from the current working directory; etc.)
-    -   `~`: starts the search from the home directory
-
-| Key Sequence | With Count   | Search Type              | Starting Search           | Shell Action                      | Editor Action               |
-|:-------------|:-------------|:-------------------------|:--------------------------|:----------------------------------|:----------------------------|
-| `<Alt-p>rc`  |              | Find "(f)recent" command |                           | Put command in command line       | Put command in command line |
-| `<Alt-p>d~`  |              | Find directory           | home                      | Put selected name in command line |                             |
-| `<Alt-p>d.`  |              | Find directory           | cwd                       | Put selected name in command line |                             |
-|              | `<Alt-p>d1.` | Find directory           | 1 directory up from cwd   | Put selected name in command line |                             |
-|              | `<Alt-p>d2.` | Find directory           | 2 directories up from cwd | Put selected name in command line |                             |
-|              | `<Alt-p>d3.` | Find directory           | 3 directories up from cwd | Put selected name in command line |                             |
-|              | etc.         | etc.                     | etc.                      | etc.                              |                             |
-| `<Alt-p>f~`  |              | Find file                | home                      | Put selected name in command line |                             |
-| `<Alt-p>f.`  |              | Find file                | cwd                       | Put selected name in command line |                             |
-|              | `<Alt-p>f1.` | Find directory           | 1 directory up from cwd   | Put selected name in command line |                             |
-|              | `<Alt-p>f2.` | Find directory           | 2 directories up from cwd | Put selected name in command line |                             |
-|              | `<Alt-p>f3.` | Find directory           | 3 directories up from cwd | Put selected name in command line |                             |
-|              | etc.         | etc.                     | etc.                      | etc.                              |                             |
-| `<Alt-p>rc`  |              | Find "(f)recent" command |                           | Put command in command line       | Put command in command line |
-| `<Alt-p>l~`  |              | Grep for lines           | home                      |                                   | Put line into buffer        |
-| `<Alt-p>l.`  |              | Grep for lines           | cwd                       |                                   | Put line into buffer        |
-|              | `<Alt-p>l1.` | Grep for lines           | 1 directory up from cwd   |                                   | Put line to buffer          |
-|              | `<Alt-p>l2.` | Grep for lines           | 2 directories up from cwd |                                   | Put line to buffer          |
-|              | `<Alt-p>l3.` | Grep for lines           | 3 directories up from cwd |                                   | Put line to buffer          |
-|              | etc.         | etc.                     | etc.                      |                                   | etc.                        |
-
 
 ## Installation
 
@@ -213,3 +98,177 @@ export RETRIEVIOUS_RIPGREP_OPTS="--no-ignore-vcs"
 set -o vi # This needs to come before sourcing so that vi key bindings are correctly mapped below
 source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 ```
+
+## Keybindings
+
+### Filesystem Retrievals for Editing/Opening
+
+| Key                    | Search | For  | From                               | S? | E? |
+|:-----------------------|:-------|:-----|:-----------------------------------|:---|:---|
+| **Find File**          |        |      |                                    |    |    |
+| `<Alt-r>~`             | Find   | file | `$HOME`                            | Y  | Y  |
+| `<Alt-r>.`             | Find   | file | cwd                                | Y  | Y  |
+| `<Alt-r>`*[count]*`.`  | Find   | file | *[count]* up from cwd              | Y  | Y  |
+| `<Alt-r>%`             | Find   | file | Buffer local dir                   | N  | Y  |
+| `<Alt-r>`*[count]*`%`  | Find   | file | *[count]* up from buffer local dir | N  | Y  |
+| **Find Dirs**          |        |      |                                    |    |    |
+| `<Alt-r>d~`            | Find   | dir  | `$HOME`                            | Y  | *  |
+| `<Alt-r>d.`            | Find   | dir  | cwd                                | Y  | *  |
+| `<Alt-r>`*[count]*`d.` | Find   | dir  | *[count]* up from cwd              | Y  | *  |
+| **Grep Text**          |        |      |                                    |    |    |
+| `<Alt-r>g~`            | Grep   | text | `$HOME`                            | Y  | Y  |
+| `<Alt-r>g.`            | Grep   | text | cwd                                | Y  | Y  |
+| `<Alt-r>g`*[count]*`.` | Grep   | text | *[count]* up from cwd              | Y  | Y  |
+| `<Alt-r>g%`            | Grep   | text | Buffer local dir                   | N  | Y  |
+| `<Alt-r>g`*[count]*`%` | Grep   | text | *[count]* up from buffer local dir | N  | Y  |
+| **Find Lines**         |        |      |                                    |    |    |
+| `<Alt-r>l`             | Find   | line | Current buffer                     | N  | Y  |
+
+### Filesystem Path Retrievals for Pasting/Putting
+
+| Key                     | Search | For      | From                  | S? | E? |
+|:------------------------|:-------|:---------|:----------------------|:---|:---|
+| `<Alt-r>pf~`            | Find   | file     | `$HOME`               | *  | *  |
+| `<Alt-r>pf.`            | Find   | file     | cwd                   | Y  | Y  |
+| `<Alt-r>pf`*[count]*`.` | Find   | file     | *[count]* up from cwd | Y  | Y  |
+| `<Alt-r>pd~`            | Find   | dir      | `$HOME`               | Y  | *  |
+| `<Alt-r>pd.`            | Find   | dir      | cwd                   | Y  | ?  |
+| `<Alt-r>pd`*[count]*`.` | Find   | dir      | *[count]* up from cwd | Y  | ?  |
+| `<Alt-r>pc`             | Find   | commands | cwd                   | Y  | ?  |
+
+### Frecent Retrievals
+
+| Key         | Target    | S? | E? | Action  |
+|:------------|:----------|:---|:---|---------|
+| `<Alt-r>rf` | file      | Y  | Y  | Cd/Edit |
+| `<Alt-r>rd` | directory | Y  | *  | Cd/Edit |
+| `<Alt-r>rc` | commands  | Y  | -  | Cd/Edit |
+| `<Alt-r>prf` | file      | Y  | Y  | Paste   |
+| `<Alt-r>prd` | directory | Y  | *  | Paste   |
+| `<Alt-r>prc` | commands  | Y  | -  | Paste   |
+
+## Appendices
+
+### Index of Key Sequences
+
+#### 1.1.1. Retrieve [to edit]: [Find] [File]
+
+- `<alt-r>~`
+- `<alt-r>.`
+- `<alt-r>1.`
+- `<alt-r>2.`
+- `<alt-r>3.`
+- `<alt-r>4.`
+- `<alt-r>5.`
+- `<alt-r>6.`
+- `<alt-r>7.`
+- `<alt-r>8.`
+- `<alt-r>9.`
+
+#### 1.1.2. Retrieve [to edit]: [Find] Directory
+
+- `<alt-r>d~`
+- `<alt-r>d.`
+- `<alt-r>d1.`
+- `<alt-r>d2.`
+- `<alt-r>d3.`
+- `<alt-r>d4.`
+- `<alt-r>d5.`
+- `<alt-r>d6.`
+- `<alt-r>d7.`
+- `<alt-r>d8.`
+- `<alt-r>d9.`
+
+#### 1.1.3. Retrieve [to edit]: [Find] Buffer
+
+- `<alt-r>b`
+
+#### 1.1.4. Retrieve [to edit]: [Find] Lines
+
+- `<alt-r>l`
+
+#### 1.2.1. Retrieve [to edit]: Grep [File]
+
+- `<alt-r>g~`
+- `<alt-r>g.`
+- `<alt-r>g1.`
+- `<alt-r>g2.`
+- `<alt-r>g3.`
+- `<alt-r>g4.`
+- `<alt-r>g5.`
+- `<alt-r>g6.`
+- `<alt-r>g7.`
+- `<alt-r>g8.`
+- `<alt-r>g9.`
+
+#### 1.2.2. Retrieve [to edit]: Grep [Buffer]
+
+- `<alt-r>gb`
+
+#### 1.3.1. Retrieve [to edit]: Recent
+
+- `<alt-r>rc`
+- `<alt-r>rd`
+- `<alt-r>rf`
+
+#### 2.1.1. Retrieve to *p*aste: [Find] [File]
+
+- `<alt-r>p~`
+- `<alt-r>p.`
+- `<alt-r>p1.`
+- `<alt-r>p2.`
+- `<alt-r>p3.`
+- `<alt-r>p4.`
+- `<alt-r>p5.`
+- `<alt-r>p6.`
+- `<alt-r>p7.`
+- `<alt-r>p8.`
+- `<alt-r>p9.`
+
+#### 2.1.2. Retrieve to *p*aste: [Find] Directory
+
+- `<alt-r>pd~`
+- `<alt-r>pd.`
+- `<alt-r>pd1.`
+- `<alt-r>pd2.`
+- `<alt-r>pd3.`
+- `<alt-r>pd4.`
+- `<alt-r>pd5.`
+- `<alt-r>pd6.`
+- `<alt-r>pd7.`
+- `<alt-r>pd8.`
+- `<alt-r>pd9.`
+
+#### 2.2.1. Retrieve to *p*aste: Lines
+
+- `<alt-r>pl~`
+- `<alt-r>pl.`
+- `<alt-r>pl1.`
+- `<alt-r>pl2.`
+- `<alt-r>pl3.`
+- `<alt-r>pl4.`
+- `<alt-r>pl5.`
+- `<alt-r>pl6.`
+- `<alt-r>pl7.`
+- `<alt-r>pl8.`
+- `<alt-r>pl9.`
+
+#### 2.3.1. Retrieve to *p*aste: Recent
+
+- `<alt-r>prc`
+- `<alt-r>prd`
+- `<alt-r>prf`
+
+#### 3.1.1. Retrieve to *o*pen
+
+- `<alt-r>o~`
+- `<alt-r>o.`
+- `<alt-r>o1.`
+- `<alt-r>o2.`
+- `<alt-r>o3.`
+- `<alt-r>o4.`
+- `<alt-r>o5.`
+- `<alt-r>o6.`
+- `<alt-r>o7.`
+- `<alt-r>o8.`
+- `<alt-r>o9.`

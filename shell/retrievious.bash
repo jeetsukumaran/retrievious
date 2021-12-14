@@ -498,145 +498,101 @@ function bind_fuzzy_functions() {
         bind '"\e^": history-expand-line'
     fi
 
-    # Alt-F: Find and edit file, search from $HOME
-    _bind_special_fn "\\eF"  '__find_and_select_file_and_cd_and_edit__ $HOME'
-    # Alt-D: Go to directory, search from $HOME
-    _bind_special_fn "\\eD"  '__find_and_select_dir_and_cd__ $HOME'
-    # Alt-G: Grep for file, search from $HOME
-    _bind_special_fn "\\eG"  '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
+    #### 1.1.1. Retrieve [to edit]: [Find] [File]
 
-    # Alt-f f <location>: Find file
+    _bind_special_fn "\\er~"  '__find_and_select_file_and_cd_and_edit__ $HOME'
+    _bind_special_fn "\\er."  '__find_and_select_file_and_cd_and_edit__ .'
+    _bind_special_fn "\\er1." '__find_and_select_file_and_cd_and_edit__ ..'
+    _bind_special_fn "\\er2." '__find_and_select_file_and_cd_and_edit__ ../..'
+    _bind_special_fn "\\er3." '__find_and_select_file_and_cd_and_edit__ ../../..'
+    _bind_special_fn "\\er4." '__find_and_select_file_and_cd_and_edit__ ../../../..'
+    _bind_special_fn "\\er5." '__find_and_select_file_and_cd_and_edit__ ../../../../..'
+    _bind_special_fn "\\er6." '__find_and_select_file_and_cd_and_edit__ ../../../../../..'
+    _bind_special_fn "\\er7." '__find_and_select_file_and_cd_and_edit__ ../../../../../../..'
+    _bind_special_fn "\\er8." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../..'
+    _bind_special_fn "\\er9." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
 
-    _bind_special_fn "\\eff."  '__find_and_select_file_and_cd_and_edit__ .'
-    _bind_special_fn "\\eff1." '__find_and_select_file_and_cd_and_edit__ ..'
-    _bind_special_fn "\\eff2." '__find_and_select_file_and_cd_and_edit__ ../..'
-    _bind_special_fn "\\eff3." '__find_and_select_file_and_cd_and_edit__ ../../..'
-    _bind_special_fn "\\eff4." '__find_and_select_file_and_cd_and_edit__ ../../../..'
-    _bind_special_fn "\\eff5." '__find_and_select_file_and_cd_and_edit__ ../../../../..'
-    _bind_special_fn "\\eff6." '__find_and_select_file_and_cd_and_edit__ ../../../../../..'
-    _bind_special_fn "\\eff7." '__find_and_select_file_and_cd_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\eff8." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\eff9." '__find_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\eff~"  '__find_and_select_file_and_cd_and_edit__ $HOME'
+    #### 1.1.2. Retrieve [to edit]: [Find] Directory
 
-    # Alt-f d <location>: Find directory
+    _bind_special_fn "\\erd~"  '__find_and_select_dir_and_cd__ $HOME'
+    _bind_special_fn "\\erd."  '__find_and_select_dir_and_cd__ .'
+    _bind_special_fn "\\erd1." '__find_and_select_dir_and_cd__ ..'
+    _bind_special_fn "\\erd2." '__find_and_select_dir_and_cd__ ../..'
+    _bind_special_fn "\\erd3." '__find_and_select_dir_and_cd__ ../../..'
+    _bind_special_fn "\\erd4." '__find_and_select_dir_and_cd__ ../../../..'
+    _bind_special_fn "\\erd5." '__find_and_select_dir_and_cd__ ../../../../..'
+    _bind_special_fn "\\erd6." '__find_and_select_dir_and_cd__ ../../../../../..'
+    _bind_special_fn "\\erd7." '__find_and_select_dir_and_cd__ ../../../../../../..'
+    _bind_special_fn "\\erd8." '__find_and_select_dir_and_cd__ ../../../../../../../..'
+    _bind_special_fn "\\erd9." '__find_and_select_dir_and_cd__ ../../../../../../../../../'
 
-    _bind_special_fn "\\efd."  '__find_and_select_dir_and_cd__ .'
-    _bind_special_fn "\\efd1." '__find_and_select_dir_and_cd__ ..'
-    _bind_special_fn "\\efd2." '__find_and_select_dir_and_cd__ ../..'
-    _bind_special_fn "\\efd3." '__find_and_select_dir_and_cd__ ../../..'
-    _bind_special_fn "\\efd4." '__find_and_select_dir_and_cd__ ../../../..'
-    _bind_special_fn "\\efd5." '__find_and_select_dir_and_cd__ ../../../../..'
-    _bind_special_fn "\\efd6." '__find_and_select_dir_and_cd__ ../../../../../..'
-    _bind_special_fn "\\efd7." '__find_and_select_dir_and_cd__ ../../../../../../..'
-    _bind_special_fn "\\efd8." '__find_and_select_dir_and_cd__ ../../../../../../../..'
-    _bind_special_fn "\\efd9." '__find_and_select_dir_and_cd__ ../../../../../../../../../'
-    _bind_special_fn "\\efd~"  '__find_and_select_dir_and_cd__ $HOME'
+    #### 1.2.1. Retrieve [to edit]: Grep [File]
 
-    # Alt-g f <location>: Grep for file
+    _bind_special_fn "\\erg."  '__grep_and_select_file_and_cd_and_edit__ .'
+    _bind_special_fn "\\erg1." '__grep_and_select_file_and_cd_and_edit__ ..'
+    _bind_special_fn "\\erg2." '__grep_and_select_file_and_cd_and_edit__ ../..'
+    _bind_special_fn "\\erg3." '__grep_and_select_file_and_cd_and_edit__ ../../..'
+    _bind_special_fn "\\erg4." '__grep_and_select_file_and_cd_and_edit__ ../../../..'
+    _bind_special_fn "\\erg5." '__grep_and_select_file_and_cd_and_edit__ ../../../../..'
+    _bind_special_fn "\\erg6." '__grep_and_select_file_and_cd_and_edit__ ../../../../../..'
+    _bind_special_fn "\\erg7." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../..'
+    _bind_special_fn "\\erg8." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../..'
+    _bind_special_fn "\\erg9." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
+    _bind_special_fn "\\erg~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
+    _bind_special_fn "\\ergh"  '__grep_and_select_file_and_cd_and_edit__ . --smart-case --no-ignore-vcs --hidden'
 
-    _bind_special_fn "\\egf."  '__grep_and_select_file_and_cd_and_edit__ .'
-    _bind_special_fn "\\egf1." '__grep_and_select_file_and_cd_and_edit__ ..'
-    _bind_special_fn "\\egf2." '__grep_and_select_file_and_cd_and_edit__ ../..'
-    _bind_special_fn "\\egf3." '__grep_and_select_file_and_cd_and_edit__ ../../..'
-    _bind_special_fn "\\egf4." '__grep_and_select_file_and_cd_and_edit__ ../../../..'
-    _bind_special_fn "\\egf5." '__grep_and_select_file_and_cd_and_edit__ ../../../../..'
-    _bind_special_fn "\\egf6." '__grep_and_select_file_and_cd_and_edit__ ../../../../../..'
-    _bind_special_fn "\\egf7." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../..'
-    _bind_special_fn "\\egf8." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../..'
-    _bind_special_fn "\\egf9." '__grep_and_select_file_and_cd_and_edit__ ../../../../../../../../../'
-    _bind_special_fn "\\egf~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
-    _bind_special_fn "\\egfh"  '__grep_and_select_file_and_cd_and_edit__ . --smart-case --no-ignore-vcs --hidden'
+    #### 1.3.1. Retrieve [to edit]: Recent
 
-    # Alt-r f: Recent file
+    _bind_special_fn "\\errf" __f_select_frecent_file_and_cd_and_edit__
+    _bind_special_fn "\\errd" __f_select_frecent_dir_and_cd__
 
-    _bind_special_fn "\\erf" __f_select_frecent_file_and_cd_and_edit__
+    #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 
-    # Alt-r d: Recent direcetory
+    _bind_special_cmdline_fn1 "\\erpf."  '__find_and_select_file__ . multi'
+    _bind_special_cmdline_fn1 "\\erpf1." '__find_and_select_file__ .. multi'
+    _bind_special_cmdline_fn1 "\\erpf2." '__find_and_select_file__ ../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf3." '__find_and_select_file__ ../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf4." '__find_and_select_file__ ../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf5." '__find_and_select_file__ ../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf6." '__find_and_select_file__ ../../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf7." '__find_and_select_file__ ../../../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf8." '__find_and_select_file__ ../../../../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpf9." '__find_and_select_file__ ../../../../../../../../../ multi'
+    _bind_special_cmdline_fn1 "\\erpf~"  '__find_and_select_file__ $HOME multi'
 
-    _bind_special_fn "\\erd" __f_select_frecent_dir_and_cd__
+    #### 2.1.2. Retrieve to *p*aste: [Find] Directory
 
-    # Alt-F <location>: Like Alt-f, but without changing working directory
+    _bind_special_cmdline_fn1 "\\erpd."  '__find_and_select_dir__ . multi'
+    _bind_special_cmdline_fn1 "\\erpd1." '__find_and_select_dir__ .. multi'
+    _bind_special_cmdline_fn1 "\\erpd2." '__find_and_select_dir__ ../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd3." '__find_and_select_dir__ ../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd4." '__find_and_select_dir__ ../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd5." '__find_and_select_dir__ ../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd6." '__find_and_select_dir__ ../../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd7." '__find_and_select_dir__ ../../../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd8." '__find_and_select_dir__ ../../../../../../../.. multi'
+    _bind_special_cmdline_fn1 "\\erpd9." '__find_and_select_dir__ ../../../../../../../../../ multi'
+    _bind_special_cmdline_fn1 "\\erpd~"  '__find_and_select_dir__ $HOME multi'
 
-    # _bind_special_fn "\\eF."  '__find_and_select_file_and_edit__ .'
-    # _bind_special_fn "\\eF1." '__find_and_select_file_and_edit__ ..'
-    # _bind_special_fn "\\eF2." '__find_and_select_file_and_edit__ ../..'
-    # _bind_special_fn "\\eF3." '__find_and_select_file_and_edit__ ../../..'
-    # _bind_special_fn "\\eF4." '__find_and_select_file_and_edit__ ../../../..'
-    # _bind_special_fn "\\eF5." '__find_and_select_file_and_edit__ ../../../../..'
-    # _bind_special_fn "\\eF6." '__find_and_select_file_and_edit__ ../../../../../..'
-    # _bind_special_fn "\\eF7." '__find_and_select_file_and_edit__ ../../../../../../..'
-    # _bind_special_fn "\\eF8." '__find_and_select_file_and_edit__ ../../../../../../../..'
-    # _bind_special_fn "\\eF9." '__find_and_select_file_and_edit__ ../../../../../../../../../'
-    # _bind_special_fn "\\eF~"  '__find_and_select_file_and_edit__ $HOME'
+    #### 2.3.1. Retrieve to *p*aste: Recent
 
-    # Alt-G <location>: Like Alt-g, but without changing working directory
+    _bind_special_cmdline_fn1 "\\errpf" __find_and_select_frecent_file__
+    _bind_special_cmdline_fn1 "\\errpd" __find_and_select_frecent_dir__
+    _bind_special_cmdline_fn1 "\\errpc" __f_select_and_print_history__
 
-    # _bind_special_fn "\\eG."  '__grep_and_select_file_and_edit__ .'
-    # _bind_special_fn "\\eG1." '__grep_and_select_file_and_edit__ ..'
-    # _bind_special_fn "\\eG2." '__grep_and_select_file_and_edit__ ../..'
-    # _bind_special_fn "\\eG3." '__grep_and_select_file_and_edit__ ../../..'
-    # _bind_special_fn "\\eG4." '__grep_and_select_file_and_edit__ ../../../..'
-    # _bind_special_fn "\\eG5." '__grep_and_select_file_and_edit__ ../../../../..'
-    # _bind_special_fn "\\eG6." '__grep_and_select_file_and_edit__ ../../../../../..'
-    # _bind_special_fn "\\eG7." '__grep_and_select_file_and_edit__ ../../../../../../..'
-    # _bind_special_fn "\\eG8." '__grep_and_select_file_and_edit__ ../../../../../../../..'
-    # _bind_special_fn "\\eG9." '__grep_and_select_file_and_edit__ ../../../../../../../../../'
-    # _bind_special_fn "\\eG~"  '__grep_and_select_file_and_edit__ $HOME'
+    #### 3.1.1. Retrieve to *o*pen
 
-    # Alt-R f: Like Alt-r, but without changing directory
-
-    # _bind_special_fn "\\eeRf" __f_select_frecent_file_edit__
-
-    # Alt-p f <location>: *P*ut found filepath: print selected file path on the command line
-
-    _bind_special_cmdline_fn1 "\\epf."  '__find_and_select_file__ . multi'
-    _bind_special_cmdline_fn1 "\\epf1." '__find_and_select_file__ .. multi'
-    _bind_special_cmdline_fn1 "\\epf2." '__find_and_select_file__ ../.. multi'
-    _bind_special_cmdline_fn1 "\\epf3." '__find_and_select_file__ ../../.. multi'
-    _bind_special_cmdline_fn1 "\\epf4." '__find_and_select_file__ ../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epf5." '__find_and_select_file__ ../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epf6." '__find_and_select_file__ ../../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epf7." '__find_and_select_file__ ../../../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epf8." '__find_and_select_file__ ../../../../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epf9." '__find_and_select_file__ ../../../../../../../../../ multi'
-    _bind_special_cmdline_fn1 "\\epf~"  '__find_and_select_file__ $HOME multi'
-
-    # Alt-p d <location>: *P*ut found directory: print selected directory path on the command line
-
-    _bind_special_cmdline_fn1 "\\epd."  '__find_and_select_dir__ . multi'
-    _bind_special_cmdline_fn1 "\\epd1." '__find_and_select_dir__ .. multi'
-    _bind_special_cmdline_fn1 "\\epd2." '__find_and_select_dir__ ../.. multi'
-    _bind_special_cmdline_fn1 "\\epd3." '__find_and_select_dir__ ../../.. multi'
-    _bind_special_cmdline_fn1 "\\epd4." '__find_and_select_dir__ ../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epd5." '__find_and_select_dir__ ../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epd6." '__find_and_select_dir__ ../../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epd7." '__find_and_select_dir__ ../../../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epd8." '__find_and_select_dir__ ../../../../../../../.. multi'
-    _bind_special_cmdline_fn1 "\\epd9." '__find_and_select_dir__ ../../../../../../../../../ multi'
-    _bind_special_cmdline_fn1 "\\epd~"  '__find_and_select_dir__ $HOME multi'
-
-    # Alt-p r: *P*ut *r*ecent *c*ommands, *f*ilepaths, or *d*irectories on the command line
-
-    _bind_special_cmdline_fn1 "\\erc" __f_select_and_print_history__
-    _bind_special_cmdline_fn1 "\\epc" __f_select_and_print_history__
-    _bind_special_cmdline_fn1 "\\eprc" __f_select_and_print_history__
-    _bind_special_cmdline_fn1 "\\eprf" __find_and_select_frecent_file__
-    _bind_special_cmdline_fn1 "\\eprd" __find_and_select_frecent_dir__
-
-    # Alt-o <location>: *O*pen (using default app) *f*ound file (without changing directory)
-
-    _bind_special_fn "\\eo."  '__find_and_select_file_and_open__ .'
-    _bind_special_fn "\\eo1." '__find_and_select_file_and_open__ ..'
-    _bind_special_fn "\\eo2." '__find_and_select_file_and_open__ ../..'
-    _bind_special_fn "\\eo3." '__find_and_select_file_and_open__ ../../..'
-    _bind_special_fn "\\eo4." '__find_and_select_file_and_open__ ../../../..'
-    _bind_special_fn "\\eo5." '__find_and_select_file_and_open__ ../../../../..'
-    _bind_special_fn "\\eo6." '__find_and_select_file_and_open__ ../../../../../..'
-    _bind_special_fn "\\eo7." '__find_and_select_file_and_open__ ../../../../../../..'
-    _bind_special_fn "\\eo8." '__find_and_select_file_and_open__ ../../../../../../../..'
-    _bind_special_fn "\\eo9." '__find_and_select_file_and_open__ ../../../../../../../../../'
-    _bind_special_fn "\\eo~"  '__find_and_select_file_and_open__ $HOME'
+    _bind_special_fn "\\ero~"  '__find_and_select_file_and_open__ $HOME'
+    _bind_special_fn "\\ero."  '__find_and_select_file_and_open__ .'
+    _bind_special_fn "\\ero1." '__find_and_select_file_and_open__ ..'
+    _bind_special_fn "\\ero2." '__find_and_select_file_and_open__ ../..'
+    _bind_special_fn "\\ero3." '__find_and_select_file_and_open__ ../../..'
+    _bind_special_fn "\\ero4." '__find_and_select_file_and_open__ ../../../..'
+    _bind_special_fn "\\ero5." '__find_and_select_file_and_open__ ../../../../..'
+    _bind_special_fn "\\ero6." '__find_and_select_file_and_open__ ../../../../../..'
+    _bind_special_fn "\\ero7." '__find_and_select_file_and_open__ ../../../../../../..'
+    _bind_special_fn "\\ero8." '__find_and_select_file_and_open__ ../../../../../../../..'
+    _bind_special_fn "\\ero9." '__find_and_select_file_and_open__ ../../../../../../../../../'
 
 
 }

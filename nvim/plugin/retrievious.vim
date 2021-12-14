@@ -1,4 +1,6 @@
+" Supporting Functions {{{1
 
+" Operational Functions {{{2
 lua << EOF
 -- Use `live_grep_raw` if available, otherwise fall back to `live_grep`
 -- - `live_grep_raw` is IMHO a more useful interface, allowing you to specify
@@ -44,35 +46,62 @@ function! s:_grab_up_n(root, count)
     let prompt_path = fnamemodify(cwd, ":p:~")
     execute "Telescope grab_lines cwd=" . cwd
 endfunction
+" }}}2 Operational Functions
 
-nnoremap <M-f>f. :<C-u>call <SID>_find_from_cwd(getcwd(), v:count)<CR>
-nnoremap <M-f>f% :<C-u>call <SID>_find_from_cwd(expand("%:p:h"), v:count)<CR>
-nnoremap <M-g>f. :<C-u>call <SID>_grep_up_n(getcwd(), v:count)<CR>
-nnoremap <M-g>f% :<C-u>call <SID>_grep_up_n(expand("%:p:h"), v:count)<CR>
-nnoremap <M-p>l. :<C-u>call <SID>_grab_up_n(getcwd(), v:count)<CR>
-nnoremap <M-p>l% :<C-u>call <SID>_grab_up_n(expand("%:p:h"), v:count)<CR>
+" Keymapping Functions {{{2
 
-function! s:_set_find_and_grep_keymaps()
+" Handles all [count] mappings for targets: '.', '%'
+function! s:_set_find_and_grep_keymaps(key_seq, target, fn_name, cwd)
+    execute "nnoremap <M-r>" . a:key_seq . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", v:count)<CR>"
     for nlevel in range(1, 9)
-        execute "nnoremap <M-f>f" . nlevel . ". :<C-u>call <SID>_find_from_cwd(getcwd(), " . nlevel . ")<CR>"
-        execute "nnoremap <M-f>f" . nlevel . "% :<C-u>call <SID>_find_from_cwd(expand('%:p:h'), " . nlevel . ")<CR>"
-        execute "nnoremap <M-g>f" . nlevel . ". :<C-u>call <SID>_grep_up_n(getcwd(), " . nlevel . ")<CR>"
-        execute "nnoremap <M-g>f" . nlevel . "% :<C-u>call <SID>_grep_up_n(expand('%:p:h'), " . nlevel . ")<CR>"
-        execute "nnoremap <M-p>l" . nlevel . ". :<C-u>call <SID>_grab_up_n(getcwd(), " . nlevel . ")<CR>"
-        execute "nnoremap <M-p>l" . nlevel . "% :<C-u>call <SID>_grab_up_n(expand('%:p:h'), " . nlevel . ")<CR>"
+        execute "nnoremap <M-r>" . a:key_seq . nlevel . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", " . nlevel . ")<CR>"
     endfor
 endfunction
-call s:_set_find_and_grep_keymaps()
+" }}}2 Keymapping Functions
 
-nnoremap <M-S-f> <cmd>:lua require('telescope.builtin').find_files({cwd="~", prompt_title="~"})<CR>
-nnoremap <M-f>f~ <cmd>:lua require('telescope.builtin').find_files({cwd="~", prompt_title="~"})<CR>
-nnoremap <M-g>f~ <cmd>:lua _telescope_grep({cwd="~", prompt_title="~"})<CR>
-nnoremap <M-p>l~ <cmd>:Telescope grab_lines cwd=~<CR>
+" }}}1 Supporting Functions
 
-nnoremap <M-f>b <cmd>Telescope buffers     <cr>
-nnoremap <C-p> <cmd>Telescope buffers      <cr>
+" Key Mappings {{{1
 
-nnoremap <M-r>f <cmd>Telescope oldfiles    <cr>
-nnoremap <M-g>b <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
+" #### 1.1.1. Retrieve [to edit]: [Find] [File]
+call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
+call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
+call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
 
+" #### 1.1.2. Retrieve [to edit]: [Find] Directory
+" TODO
+
+" #### 1.1.3 Retrieve: [Find] Buffer
+nnoremap <M-r>b <cmd>Telescope buffers<CR>
+nnoremap <C-p> <cmd>Telescope buffers<CR>
+
+" #### 1.1.3 Retrieve: [Find] Lines
+nnoremap <M-r>l :<C-u>Telescope current_buffer_fuzzy_find<CR>
+
+" #### 1.2.1. Retrieve [to edit]: Grep [File]
+call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
+call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
+call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
+
+" #### 1.2.2. Retrieve [to edit]: Grep [Buffer]
+nnoremap <M-r>gb <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
+
+" #### 1.3.1. Retrieve [to edit]: Recent
+nnoremap <M-r>rf <cmd>Telescope oldfiles<CR>
+
+" #### 2.1.1. Retrieve to *p*aste: [Find] [File]
+" TODO
+
+" #### 2.1.2. Retrieve to *p*aste: [Find] Directory
+" TODO
+
+" #### 2.2.1. Retrieve to *p*aste: Lines
+call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")
+call s:_set_find_and_grep_keymaps("pl", ".", "<SID>_grab_up_n", "getcwd()")
+call s:_set_find_and_grep_keymaps("pl", "%", "<SID>_grab_up_n", "expand('%:p:h')")
+
+" #### 2.3.1. Retrieve to *p*aste: Recent
+" TODO
+
+" }}}1 Key Mappings
 
