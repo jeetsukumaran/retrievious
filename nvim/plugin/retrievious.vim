@@ -85,8 +85,11 @@ call s:_set_find_and_grep_keymaps("g", "<M-g>", "<SID>_grep_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
-" #### 1.2.2. Retrieve [to visit]: Grep [Buffer]
+" #### 1.2.2. Retrieve [to visit]: Grep Buffer
 nnoremap <M-r>gb <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
+
+" #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
+" nnoremap <M-r>gl :<C-u>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>
 
 " #### 1.3.1. Retrieve [to visit]: Recent
 nnoremap <M-r>rf <cmd>Telescope oldfiles<CR>

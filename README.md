@@ -154,9 +154,14 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r><alt-g>`
     -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
 
-#### 1.2.2. Retrieve [to visit]: Grep [Buffer]
+#### 1.2.2. Retrieve [to visit]: Grep Buffer
 
 - `<alt-r>gb`
+
+#### 1.2.2. Retrieve [to visit]: Grep Lines
+
+- `<alt-r>gl`
+
 
 #### 1.3.1. Retrieve [to visit]: *R*ecent *f*iles and *d*irectories
 
