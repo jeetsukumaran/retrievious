@@ -163,10 +163,11 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>gl`
 
 
-#### 1.3.1. Retrieve [to visit]: *R*ecent *f*iles and *d*irectories
+#### 1.3.1. Retrieve [to visit]: *r*ecent *f*iles, *d*irectories, and *c*ommands
 
 - `<alt-r>rf`
 - `<alt-r>rd`
+- `<alt-r>rc`
 
 #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 
@@ -210,7 +211,7 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>pl8.`
 - `<alt-r>pl9.`
 
-#### 2.3.1. Retrieve to *p*aste: *R*ecent *f*iles, *d*irectories, and *c*ommands
+#### 2.3.1. Retrieve to *p*aste: *r*ecent *f*iles, *d*irectories, and *c*ommands
 
 - `<alt-r>prf`
 - `<alt-r>prd`

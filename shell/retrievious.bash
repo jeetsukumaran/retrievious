@@ -554,6 +554,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_fn "\\errf" __f_select_frecent_file_and_cd_and_edit__
     _bind_special_fn "\\errd" __f_select_frecent_dir_and_cd__
+    _bind_special_fn "\\errc" __f_select_and_print_history__
 
     #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 
