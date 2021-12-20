@@ -101,8 +101,8 @@ nnoremap <M-r>rf <cmd>Telescope oldfiles<CR>
 " TODO
 
 " #### 2.2.1. Retrieve to *p*aste: Lines
+nnoremap <M-r>plb <NOP>
 call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")
-call s:_set_find_and_grep_keymaps("<M-p>l", "~", "<SID>_grab_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("pl", ".", "<SID>_grab_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("pl", "%", "<SID>_grab_up_n", "expand('%:p:h')")
 
