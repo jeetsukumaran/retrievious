@@ -134,9 +134,9 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 - `<alt-r>b`
 
-#### 1.1.4. Retrieve [to visit]: [Find] Lines
+#### 1.1.4. Retrieve [to visit]: [Find] Lines (in Buffer)
 
-- `<alt-r>l`
+- `<alt-r>lb`
 
 #### 1.2.1. Retrieve [to visit]: Grep [File]
 
@@ -158,9 +158,9 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 - `<alt-r>gb`
 
-#### 1.2.2. Retrieve [to visit]: Grep Lines
+#### 1.2.2. Retrieve [to visit]: Grep Lines (in Buffer)
 
-- `<alt-r>gl`
+- `<alt-r>gl` ** not implemented
 
 
 #### 1.3.1. Retrieve [to visit]: *r*ecent *f*iles, *d*irectories, and *c*ommands
@@ -199,6 +199,7 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 #### 2.2.1. Retrieve to *p*aste: Lines
 
+- `<alt-r>plb`
 - `<alt-r>pl~`
 - `<alt-r>pl.`
 - `<alt-r>pl1.`
