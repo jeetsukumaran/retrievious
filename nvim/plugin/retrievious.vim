@@ -89,7 +89,8 @@ call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')"
 nnoremap <M-r>gb <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
 
 " #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
-" nnoremap <M-r>gl :<C-u>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>
+" nnoremap <M-r>gl :<C-u>execute "lua require('telescope.builtin').live_grep({search_dirs={'" . expand("%:p") . "'}})"<CR>
+nnoremap <M-r>gl :lua require("telescope.builtin").live_grep({search_dirs={vim.fn.expand("%:p")}})<CR>
 
 " #### 1.3.1. Retrieve [to visit]: Recent
 nnoremap <M-r>rf <cmd>Telescope oldfiles<CR>

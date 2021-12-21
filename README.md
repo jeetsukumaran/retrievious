@@ -136,7 +136,7 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 #### 1.1.4. Retrieve [to visit]: [Find] Lines (in Buffer)
 
-- `<alt-r>lb`
+- `<alt-r>l`
 
 #### 1.2.1. Retrieve [to visit]: Grep [File]
 
@@ -158,9 +158,9 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 - `<alt-r>gb`
 
-#### 1.2.2. Retrieve [to visit]: Grep Lines (in Buffer)
+#### 1.2.3. Retrieve [to visit]: Grep Lines (in Buffer)
 
-- `<alt-r>gl` ** not implemented
+- `<alt-r>gl`
 
 
 #### 1.3.1. Retrieve [to visit]: *r*ecent *f*iles, *d*irectories, and *c*ommands
