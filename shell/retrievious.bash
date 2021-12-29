@@ -168,6 +168,13 @@ _FZF_GREP_PRUNE=$(__f_compose_fzf_grep_prune__)
 
 # Selecting Functions {{{2
 
+function __f_fasd_log__() {
+    # log path in fasd database,
+    # failing silently and gracefull
+    # if fasd not available
+    fasd -A $1 2>/dev/null || true
+}
+
 function __f_regularize_paths__() {
     local line entry
     while read -r line;
@@ -225,7 +232,7 @@ function __find_and_select_dir__() {
         __f_find_dir__ $start_dir \
         | __f_select_dir__ "{$(readlink -f $start_dir)} ${select_opts}"
         )" \
-        && fasd -A ${fullpath} && echo ${fullpath} || echo ""
+        && __f_fasd_log__ ${fullpath} && echo ${fullpath} || echo ""
 }
 
 function __find_and_select_frecent_file__() {
@@ -234,7 +241,7 @@ function __find_and_select_frecent_file__() {
     [[ ("edit" == "${open_type}") || ("multi" == "${open_type}") ]] && local select_opts="-m" || local select_opts=""
     # fullpath="$(fasd -Rfl | __f_select_file__ "--header={recent}")" \
     fullpath="$(fasd -Rfl | __f_select_file__ "--header={recent}" ${select_opts})" \
-        && fasd -A ${fullpath} && echo ${fullpath} || echo ""
+        && __f_fasd_log__ ${fullpath} && echo ${fullpath} || echo ""
 }
 
 function __find_and_select_frecent_dir__() {
