@@ -225,7 +225,7 @@ function __find_and_select_dir__() {
         __f_find_dir__ $start_dir \
         | __f_select_dir__ "{$(readlink -f $start_dir)} ${select_opts}"
         )" \
-        && echo ${fullpath} || echo ""
+        && fasd -A ${fullpath} && echo ${fullpath} || echo ""
 }
 
 function __find_and_select_frecent_file__() {
@@ -234,7 +234,7 @@ function __find_and_select_frecent_file__() {
     [[ ("edit" == "${open_type}") || ("multi" == "${open_type}") ]] && local select_opts="-m" || local select_opts=""
     # fullpath="$(fasd -Rfl | __f_select_file__ "--header={recent}")" \
     fullpath="$(fasd -Rfl | __f_select_file__ "--header={recent}" ${select_opts})" \
-        && echo ${fullpath} || echo ""
+        && fasd -A ${fullpath} && echo ${fullpath} || echo ""
 }
 
 function __find_and_select_frecent_dir__() {
