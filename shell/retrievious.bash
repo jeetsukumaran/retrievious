@@ -7,7 +7,6 @@
 [[ -n "$RETRIEVIOUS_EDIT_PRUNE_PATHS" ]] || RETRIEVIOUS_EDIT_PRUNE_PATHS=""
 [[ -n "$RETRIEVIOUS_FDFIND_PATH" ]] || RETRIEVIOUS_FDFIND_PATH="fd"
 [[ -n "$RETRIEVIOUS_FDFIND_OPTS" ]] || RETRIEVIOUS_FDFIND_OPTS=""
-[[ -n "$RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS" ]] || RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS=""
 if [[ -z "${RETRIEVIOUS_GREP_TYPE}" ]]
 then
     if [[ $(type -P "rg") ]]
@@ -38,7 +37,7 @@ fi
 # <alt-r><alt-d> etc.) search in.
 
 [[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_ROOT" ]] || RETRIEVIOUS_GLOBAL_SEARCH_ROOT="$HOME"
-[[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT" ]] || RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT="~/.local/"
+[[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT" ]] || RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT="$HOME"
 
 # }}}1
 
@@ -80,11 +79,11 @@ then
         else
             local exc=${_FZF_FDFIND_EXCLUDE}
         fi
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS} ${1}"
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
     }
 
     function __f_find_dir__() {
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS} ${1}"
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
     }
 else
     function __f_compose_fzf_find_prune__() {

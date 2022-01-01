@@ -66,6 +66,9 @@ endfunction
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
 call s:_set_find_and_grep_keymaps("", "<M-f>", "<SID>_find_from_cwd", "'~'")
+if $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT != ""
+    call s:_set_find_and_grep_keymaps("", "F", "<SID>_find_from_cwd", "'$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'")
+endif
 call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
 
@@ -82,6 +85,9 @@ nnoremap <M-r>lb :<C-u>Telescope current_buffer_fuzzy_find<CR>
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("g", "<M-g>", "<SID>_grep_up_n", "'~'")
+if $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT != ""
+    call s:_set_find_and_grep_keymaps("", "G", "<SID>_grep_up_n", "'$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'")
+endif
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
