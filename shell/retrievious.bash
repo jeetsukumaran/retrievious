@@ -7,6 +7,7 @@
 [[ -n "$RETRIEVIOUS_EDIT_PRUNE_PATHS" ]] || RETRIEVIOUS_EDIT_PRUNE_PATHS=""
 [[ -n "$RETRIEVIOUS_FDFIND_PATH" ]] || RETRIEVIOUS_FDFIND_PATH="fd"
 [[ -n "$RETRIEVIOUS_FDFIND_OPTS" ]] || RETRIEVIOUS_FDFIND_OPTS=""
+[[ -n "$RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS" ]] || RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS=""
 if [[ -z "${RETRIEVIOUS_GREP_TYPE}" ]]
 then
     if [[ $(type -P "rg") ]]
@@ -37,6 +38,7 @@ fi
 # <alt-r><alt-d> etc.) search in.
 
 [[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_ROOT" ]] || RETRIEVIOUS_GLOBAL_SEARCH_ROOT="$HOME"
+[[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT" ]] || RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT="~/.local/"
 
 # }}}1
 
@@ -78,11 +80,11 @@ then
         else
             local exc=${_FZF_FDFIND_EXCLUDE}
         fi
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS} ${1}"
     }
 
     function __f_find_dir__() {
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${RETRIEVIOUS_FDFIND_ALWAYS_INCLUDE_PATHS} ${1}"
     }
 else
     function __f_compose_fzf_find_prune__() {
@@ -515,6 +517,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_fn "\\er~"  '__find_and_select_file_and_cd_and_edit__ $HOME'
     _bind_special_fn "\\er\\ef"  '__find_and_select_file_and_cd_and_edit__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT'
+    _bind_special_fn "\\erF"  '__find_and_select_file_and_cd_and_edit__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'
     _bind_special_fn "\\er."  '__find_and_select_file_and_cd_and_edit__ .'
     _bind_special_fn "\\er1." '__find_and_select_file_and_cd_and_edit__ ..'
     _bind_special_fn "\\er2." '__find_and_select_file_and_cd_and_edit__ ../..'
@@ -530,6 +533,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_fn "\\erd~"  '__find_and_select_dir_and_cd__ $HOME'
     _bind_special_fn "\\er\\ed"  '__find_and_select_dir_and_cd__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT'
+    _bind_special_fn "\\er\\ed"  '__find_and_select_dir_and_cd__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'
     _bind_special_fn "\\erd."  '__find_and_select_dir_and_cd__ .'
     _bind_special_fn "\\erd1." '__find_and_select_dir_and_cd__ ..'
     _bind_special_fn "\\erd2." '__find_and_select_dir_and_cd__ ../..'
@@ -545,6 +549,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_fn "\\erg~" '__grep_and_select_file_and_cd_and_edit__ $HOME --smart-case --ignore-vcs --no-hidden'
     _bind_special_fn "\\er\\eg" '__grep_and_select_file_and_cd_and_edit__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT --smart-case --ignore-vcs --no-hidden'
+    _bind_special_fn "\\er\\eg" '__grep_and_select_file_and_cd_and_edit__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT --smart-case --ignore-vcs --no-hidden'
     _bind_special_fn "\\erg."  '__grep_and_select_file_and_cd_and_edit__ .'
     _bind_special_fn "\\erg1." '__grep_and_select_file_and_cd_and_edit__ ..'
     _bind_special_fn "\\erg2." '__grep_and_select_file_and_cd_and_edit__ ../..'
@@ -567,6 +572,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_cmdline_fn1 "\\erpf~"  '__find_and_select_file__ $HOME multi'
     _bind_special_cmdline_fn1 "\\er\\pf"  '__find_and_select_file__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT multi'
+    _bind_special_cmdline_fn1 "\\er\\pf"  '__find_and_select_file__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT multi'
     _bind_special_cmdline_fn1 "\\erpf."  '__find_and_select_file__ . multi'
     _bind_special_cmdline_fn1 "\\erpf1." '__find_and_select_file__ .. multi'
     _bind_special_cmdline_fn1 "\\erpf2." '__find_and_select_file__ ../.. multi'
@@ -582,6 +588,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_cmdline_fn1 "\\erpd."  '__find_and_select_dir__ . multi'
     _bind_special_cmdline_fn1 "\\er\\pd"  '__find_and_select_dir__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT multi'
+    _bind_special_cmdline_fn1 "\\er\\pd"  '__find_and_select_dir__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT multi'
     _bind_special_cmdline_fn1 "\\erpd1." '__find_and_select_dir__ .. multi'
     _bind_special_cmdline_fn1 "\\erpd2." '__find_and_select_dir__ ../.. multi'
     _bind_special_cmdline_fn1 "\\erpd3." '__find_and_select_dir__ ../../.. multi'
@@ -602,6 +609,7 @@ function bind_fuzzy_functions() {
 
     _bind_special_fn "\\ero~"  '__find_and_select_file_and_open__ $HOME'
     _bind_special_fn "\\er\\eo"  '__find_and_select_file_and_open__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT'
+    _bind_special_fn "\\er\\eo"  '__find_and_select_file_and_open__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'
     _bind_special_fn "\\ero."  '__find_and_select_file_and_open__ .'
     _bind_special_fn "\\ero1." '__find_and_select_file_and_open__ ..'
     _bind_special_fn "\\ero2." '__find_and_select_file_and_open__ ../..'
