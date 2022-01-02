@@ -531,8 +531,8 @@ function bind_fuzzy_functions() {
     #### 1.1.2. Retrieve [to visit]: [Find] Directory
 
     _bind_special_fn "\\erd~"  '__find_and_select_dir_and_cd__ $HOME'
-    _bind_special_fn "\\er\\C-d"  '__find_and_select_dir_and_cd__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT'
-    _bind_special_fn "\\erD"  '__find_and_select_dir_and_cd__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'
+    _bind_special_fn "\\er\\ed"  '__find_and_select_dir_and_cd__ $RETRIEVIOUS_GLOBAL_SEARCH_ROOT'
+    _bind_special_fn "\\er\\C-d"  '__find_and_select_dir_and_cd__ $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'
     _bind_special_fn "\\erd."  '__find_and_select_dir_and_cd__ .'
     _bind_special_fn "\\erd1." '__find_and_select_dir_and_cd__ ..'
     _bind_special_fn "\\erd2." '__find_and_select_dir_and_cd__ ../..'
