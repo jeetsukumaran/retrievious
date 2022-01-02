@@ -91,8 +91,8 @@ endif
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
-" #### 1.2.2. Retrieve [to visit]: Grep Buffer
-nnoremap <M-r>gb <cmd>:lua _telescope_grep({grep_open_files=true, prompt_title="buffers"})<CR>
+" #### 1.2.2. Retrieve [to visit]: Grep (Open) Buffers
+nnoremap <M-r>gb <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title="buffers"})<CR>
 
 " #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
 " nnoremap <M-r>gl :<C-u>execute "lua require('telescope.builtin').live_grep({search_dirs={'" . expand("%:p") . "'}})"<CR>
