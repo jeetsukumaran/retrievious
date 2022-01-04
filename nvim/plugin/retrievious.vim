@@ -66,10 +66,10 @@ endfunction
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
 if $RETRIEVIOUS_GLOBAL_SEARCH_PATHS1 != ""
-    :nnoremap <silent> <M-r><M-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1"), ":")})<CR>
+    :nnoremap <silent> <M-r><M-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1"), ";")})<CR>
 endif
 if $RETRIEVIOUS_GLOBAL_SEARCH_PATHS2 != ""
-    :nnoremap <silent> <M-r><C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2"), ":")})<CR>
+    :nnoremap <silent> <M-r><C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2"), ";")})<CR>
 endif
 call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
