@@ -79,11 +79,15 @@ then
         else
             local exc=${_FZF_FDFIND_EXCLUDE}
         fi
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
+        # eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
+        # `$(tr ';' ' ' <<< ${1})`: split semi-colon delimited string into space delimited strings
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} $(tr ';' ' ' <<< ${1})"
     }
 
     function __f_find_dir__() {
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
+        # eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
+        # `$(tr ';' ' ' <<< ${1})`: split semi-colon delimited string into space delimited strings
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} $(tr ';' ' ' <<< ${1})"
     }
 else
     function __f_compose_fzf_find_prune__() {
