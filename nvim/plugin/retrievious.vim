@@ -1,3 +1,9 @@
+" Global Variables and Settings {{{1
+let g:retrievious_global_search_paths1 = get(g:, "retrievious_global_search_paths1", $RETRIEVIOUS_GLOBAL_SEARCH_PATHS1)
+let g:retrievious_global_search_paths2 = get(g:, "retrievious_global_search_paths2", $RETRIEVIOUS_GLOBAL_SEARCH_PATHS2)
+let g:retrievious_global_path_separator = get(g:, "retrievious_global_path_separator", $RETRIEVIOUS_GLOBAL_PATH_SEPARATOR)
+" }}}1
+
 " Supporting Functions {{{1
 
 " Operational Functions {{{2
@@ -65,12 +71,8 @@ endfunction
 
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
-if $RETRIEVIOUS_GLOBAL_SEARCH_PATHS1 != ""
-    :nnoremap <silent> <M-r><M-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1"), ";")})<CR>
-endif
-if $RETRIEVIOUS_GLOBAL_SEARCH_PATHS2 != ""
-    :nnoremap <silent> <M-r><C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2"), ";")})<CR>
-endif
+:nnoremap <silent> <M-r><M-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator)})<CR>
+:nnoremap <silent> <M-r><C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths2, vim.g.retrievious_global_path_separator)})<CR>
 call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
 
@@ -86,12 +88,8 @@ nnoremap <M-r>lb :<C-u>Telescope current_buffer_fuzzy_find<CR>
 
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
-if $RETRIEVIOUS_GLOBAL_SEARCH_PATHS1 != ""
-    :nnoremap <silent> <M-r><M-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1"), ":")})<CR>
-endif
-if $RETRIEVIOUS_GLOBAL_SEARCH_PATHS2 != ""
-    :nnoremap <silent> <M-r><C-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2"), ":")})<CR>
-endif
+:nnoremap <silent> <M-r><M-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator)})<CR>
+:nnoremap <silent> <M-r><C-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths2, vim.g.retrievious_global_path_separator)})<CR>
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 

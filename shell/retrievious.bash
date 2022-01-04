@@ -38,10 +38,20 @@ fi
 
 [[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1" ]] || RETRIEVIOUS_GLOBAL_SEARCH_PATHS1="$HOME"
 [[ -n "$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2" ]] || RETRIEVIOUS_GLOBAL_SEARCH_PATHS2="$HOME"
+export RETRIEVIOUS_GLOBAL_SEARCH_PATHS1
+export RETRIEVIOUS_GLOBAL_SEARCH_PATHS2
+export RETRIEVIOUS_GLOBAL_PATH_SEPARATOR=";"
 
 # }}}1
 
 # Main Service Functions {{{1
+
+# Supporting Utilities {{{2
+function __f_split_path_list() {
+    echo $(tr ${RETRIEVIOUS_GLOBAL_PATH_SEPARATOR} ' ' <<< ${1})
+}
+
+# }}}2
 
 # Candidate Population Functions {{{2
 
@@ -79,15 +89,11 @@ then
         else
             local exc=${_FZF_FDFIND_EXCLUDE}
         fi
-        # eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
-        # `$(tr '${RETRIEVIOUS_GLOBAL_PATH_SEPARATOR}' ' ' <<< ${1})`: split semicolon delimited string into space delimited strings
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} $(tr ';' ' ' <<< ${1})"
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} $(__f_split_path_list ${1})"
     }
 
     function __f_find_dir__() {
-        # eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} ${1}"
-        # `$(tr '${RETRIEVIOUS_GLOBAL_PATH_SEPARATOR}' ' ' <<< ${1})`: split colon delimited string into space delimited strings
-        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} $(tr ';' ' ' <<< ${1})"
+        eval "${RETRIEVIOUS_FDFIND_PATH} . --type d ${_FZF_FDFIND_EDIT_EXCLUDE} ${RETRIEVIOUS_FDFIND_OPTS} $(__f_split_path_list ${1})"
     }
 else
     function __f_compose_fzf_find_prune__() {
