@@ -101,6 +101,30 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 
 ## Appendices
 
+### Global Search Paths
+
+You can defined two global search path environmental variables, `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1` and `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
+Each of these can be a *SEMI-COLON* separated list of paths (semi-colon was selected to allow the 'colon' character to be part of the path as might be needed for Windows.
+These paths will be searched when the "global search" commands are used:
+
+-   `RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`
+    - `<alt-r><alt-f>`
+    - `<alt-r><alt-d>`
+    - `<alt-r><alt-g>`
+-   `RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`
+    - `<alt-r><ctrl-f>`
+    - `<alt-r><ctrl-d>`
+    - `<alt-r><ctrl-g>`
+
+For example, you can define the following to have one special search of your local ecosystem and another of all mounted drives:
+
+```
+export RETRIEVIOUS_GLOBAL_SEARCH_PATHS1='~/.local/;~/.config'
+export RETRIEVIOUS_GLOBAL_SEARCH_PATHS2='/media/username;/mnt/;~/remotes/;'
+```
+
+By default, if undefined, they take on the value of "`$HOME`".
+
 ### Index of Key Sequences
 
 #### 1.1.1. Retrieve [to visit]: [Find] [File]
@@ -112,7 +136,9 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>1.`, `<alt-r>2.`, `<alt-r>3.`, ... `<alt-r>9.`
     -   Searches for a file to visit, using find, starting at directory 1, 2, 3, etc. directory levels up from current working directory.
 - `<alt-r><alt-f>`
-    -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT` (defaults to `$HOME`).
+    -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
+- `<alt-r><alt-f>`
+    -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
 
 #### 1.1.2. Retrieve [to visit]: [Find] Directory
 
@@ -128,7 +154,9 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>d8.`
 - `<alt-r>d9.`
 - `<alt-r><alt-d>`
-    -   Searches for a directory to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
+    -   Searches for a directory to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
+- `<alt-r><ctrl-d>`
+    -   Searches for a directory to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
 
 #### 1.1.3. Retrieve [to visit]: [Find] Buffer
 
@@ -152,7 +180,9 @@ source "/home/gandalf/.local/share/retrievious/shell/retrievious.bash"
 - `<alt-r>g8.`
 - `<alt-r>g9.`
 - `<alt-r><alt-g>`
-    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_ROOT`.
+    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
+- `<alt-r><ctrl-g>`
+    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
 
 #### 1.2.2. Retrieve [to visit]: Grep (Open) Buffers
 
