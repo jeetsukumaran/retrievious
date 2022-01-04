@@ -67,7 +67,8 @@ endfunction
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
 call s:_set_find_and_grep_keymaps("", "<M-f>", "<SID>_find_from_cwd", "'~'")
 if $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT != ""
-    call s:_set_find_and_grep_keymaps("", "<C-f>", "<SID>_find_from_cwd", "'$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'")
+    :nnoremap <silent> <M-r><C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT"), ";")})<CR>
+    " call s:_set_find_and_grep_keymaps("", "<C-f>", "<SID>_find_from_cwd", "'$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'")
 endif
 call s:_set_find_and_grep_keymaps("", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
@@ -86,7 +87,8 @@ nnoremap <M-r>lb :<C-u>Telescope current_buffer_fuzzy_find<CR>
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("g", "<M-g>", "<SID>_grep_up_n", "'~'")
 if $RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT != ""
-    call s:_set_find_and_grep_keymaps("", "<C-g>", "<SID>_grep_up_n", "'$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'")
+    :nnoremap <silent> <M-r><C-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.fn.eval("$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT"), ";")})<CR>
+    " call s:_set_find_and_grep_keymaps("", "<C-g>", "<SID>_grep_up_n", "'$RETRIEVIOUS_GLOBAL_SEARCH_ALT_ROOT'")
 endif
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
