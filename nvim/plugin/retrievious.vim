@@ -4,9 +4,11 @@ let g:retrievious_global_search_paths2 = get(g:, "retrievious_global_search_path
 let g:retrievious_global_path_separator = get(g:, "retrievious_global_path_separator", $RETRIEVIOUS_GLOBAL_PATH_SEPARATOR)
 " }}}1
 
-" Supporting Functions {{{1
+" Keybinds {{{1
 
-" Operational Functions {{{2
+" Supporting Functions {{{2
+
+" Operational Functions {{{3
 lua << EOF
 -- Use `live_grep_raw` if available, otherwise fall back to `live_grep`
 -- - `live_grep_raw` is IMHO a more useful interface, allowing you to specify
@@ -52,9 +54,9 @@ function! s:_grab_up_n(root, count)
     let prompt_path = fnamemodify(cwd, ":p:~")
     execute "Telescope grab_lines cwd=" . cwd
 endfunction
-" }}}2 Operational Functions
+" }}}3 Operational Functions
 
-" Keymapping Functions {{{2
+" Keymapping Functions {{{3
 
 " Handles all [count] mappings for targets: '.', '%'
 function! s:_set_find_and_grep_keymaps(key_seq, target, fn_name, cwd)
@@ -63,11 +65,11 @@ function! s:_set_find_and_grep_keymaps(key_seq, target, fn_name, cwd)
         execute "nnoremap <M-r>" . a:key_seq . nlevel . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", " . nlevel . ")<CR>"
     endfor
 endfunction
-" }}}2 Keymapping Functions
+" }}}3 Keymapping Functions
 
-" }}}1 Supporting Functions
+" }}}2 Supporting Functions
 
-" Key Mappings {{{1
+" Key Mappings {{{2
 
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("", "~", "<SID>_find_from_cwd", "'~'")
@@ -117,5 +119,6 @@ call s:_set_find_and_grep_keymaps("pl", "%", "<SID>_grab_up_n", "expand('%:p:h')
 
 " #### 2.3.1. Retrieve to *p*aste: *R*ecent *f*iles, *d*irectories, and *c*ommands
 
-" }}}1 Key Mappings
+" }}}2 Key Mappings
 
+" }}}1 Keybinds
