@@ -1,5 +1,5 @@
 " Global Variables and Settings {{{1
-let g:retrievious_leader_key = get(g:, "retrievious_leader_key", "<M-e>")
+let g:retrievious_leader_key = get(g:, "retrievious_leader_key", "<M-r>")
 let g:retrievious_global_search_paths1 = get(g:, "retrievious_global_search_paths1", $RETRIEVIOUS_GLOBAL_SEARCH_PATHS1)
 let g:retrievious_global_search_paths2 = get(g:, "retrievious_global_search_paths2", $RETRIEVIOUS_GLOBAL_SEARCH_PATHS2)
 let g:retrievious_global_path_separator = get(g:, "retrievious_global_path_separator", $RETRIEVIOUS_GLOBAL_PATH_SEPARATOR)
