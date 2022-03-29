@@ -108,13 +108,13 @@ Each of these can be a *SEMI-COLON* separated list of paths (semi-colon was sele
 These paths will be searched when the "global search" commands are used:
 
 -   `RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`
-    - `<alt-e><alt-f>`
-    - `<alt-e><alt-d>`
-    - `<alt-e><alt-g>`
+    - `<alt-r><alt-f>`
+    - `<alt-r><alt-d>`
+    - `<alt-r><alt-g>`
 -   `RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`
-    - `<alt-e><ctrl-f>`
-    - `<alt-e><ctrl-d>`
-    - `<alt-e><ctrl-g>`
+    - `<alt-r><ctrl-f>`
+    - `<alt-r><ctrl-d>`
+    - `<alt-r><ctrl-g>`
 
 For example, you can define the following to have one special search of your local ecosystem and another of all mounted drives:
 
@@ -129,135 +129,135 @@ By default, if undefined, they take on the value of "`$HOME`".
 
 #### 1.1.1. Retrieve [to visit]: [Find] [File]
 
-- `<alt-e>f~`
+- `<alt-r>f~`
     -   Searches for a file to visit, using find, starting at `$HOME`.
-- `<alt-e>f.`
+- `<alt-r>f.`
     -   Searches for a file to visit, using find, starting at the current working directory.
-- `<alt-e>f1.`, `<alt-e>f2.`, `<alt-e>f3.`, ... `<alt-e>f9.`
+- `<alt-r>f1.`, `<alt-r>f2.`, `<alt-r>f3.`, ... `<alt-r>f9.`
     -   Searches for a file to visit, using find, starting at directory 1, 2, 3, etc. directory levels up from current working directory.
-- `<alt-e><alt-f>`
+- `<alt-r><alt-f>`
     -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
-- `<alt-e><alt-f>`
+- `<alt-r><alt-f>`
     -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
 
 #### 1.1.2. Retrieve [to visit]: [Find] Directory
 
-- `<alt-e>d~`,
-- `<alt-e>d.`
-- `<alt-e>d1.`
-- `<alt-e>d2.`
-- `<alt-e>d3.`
-- `<alt-e>d4.`
-- `<alt-e>d5.`
-- `<alt-e>d6.`
-- `<alt-e>d7.`
-- `<alt-e>d8.`
-- `<alt-e>d9.`
-- `<alt-e><alt-d>`
+- `<alt-r>d~`,
+- `<alt-r>d.`
+- `<alt-r>d1.`
+- `<alt-r>d2.`
+- `<alt-r>d3.`
+- `<alt-r>d4.`
+- `<alt-r>d5.`
+- `<alt-r>d6.`
+- `<alt-r>d7.`
+- `<alt-r>d8.`
+- `<alt-r>d9.`
+- `<alt-r><alt-d>`
     -   Searches for a directory to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
-- `<alt-e><ctrl-d>`
+- `<alt-r><ctrl-d>`
     -   Searches for a directory to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
 
 #### 1.1.3. Retrieve [to visit]: [Find] Buffer
 
-- `<alt-e>b`
+- `<alt-r>b`
 
 #### 1.1.4. Retrieve [to visit]: [Find] Lines (in Buffer)
 
-- `<alt-e>l`
+- `<alt-r>l`
 
 #### 1.2.1. Retrieve [to visit]: Grep [File]
 
-- `<alt-e>g~`
-- `<alt-e>g.`
-- `<alt-e>g1.`
-- `<alt-e>g2.`
-- `<alt-e>g3.`
-- `<alt-e>g4.`
-- `<alt-e>g5.`
-- `<alt-e>g6.`
-- `<alt-e>g7.`
-- `<alt-e>g8.`
-- `<alt-e>g9.`
-- `<alt-e><alt-g>`
+- `<alt-r>g~`
+- `<alt-r>g.`
+- `<alt-r>g1.`
+- `<alt-r>g2.`
+- `<alt-r>g3.`
+- `<alt-r>g4.`
+- `<alt-r>g5.`
+- `<alt-r>g6.`
+- `<alt-r>g7.`
+- `<alt-r>g8.`
+- `<alt-r>g9.`
+- `<alt-r><alt-g>`
     -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
-- `<alt-e><ctrl-g>`
+- `<alt-r><ctrl-g>`
     -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
 
 #### 1.2.2. Retrieve [to visit]: Grep (Open) Buffers
 
-- `<alt-e>gb`
+- `<alt-r>gb`, `<alt-r>/`
 
 #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
 
-- `<alt-e>gl`
+- `<alt-r>gl`, `<alt-r>\`
 
 
 #### 1.3.1. Retrieve [to visit]: *r*ecent *f*iles, *d*irectories, and *c*ommands
 
-- `<alt-e>rf`
-- `<alt-e>rd`
-- `<alt-e>rc`
+- `<alt-r>rf`
+- `<alt-r>rd`
+- `<alt-r>rc`
 
 #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 
-- `<alt-e>pf~`
-- `<alt-e>pf.`
-- `<alt-e>pf1.`
-- `<alt-e>pf2.`
-- `<alt-e>pf3.`
-- `<alt-e>pf4.`
-- `<alt-e>pf5.`
-- `<alt-e>pf6.`
-- `<alt-e>pf7.`
-- `<alt-e>pf8.`
-- `<alt-e>pf9.`
+- `<alt-r>pf~`
+- `<alt-r>pf.`
+- `<alt-r>pf1.`
+- `<alt-r>pf2.`
+- `<alt-r>pf3.`
+- `<alt-r>pf4.`
+- `<alt-r>pf5.`
+- `<alt-r>pf6.`
+- `<alt-r>pf7.`
+- `<alt-r>pf8.`
+- `<alt-r>pf9.`
 
 #### 2.1.2. Retrieve to *p*aste: [Find] Directory
 
-- `<alt-e>pd~`
-- `<alt-e>pd.`
-- `<alt-e>pd1.`
-- `<alt-e>pd2.`
-- `<alt-e>pd3.`
-- `<alt-e>pd4.`
-- `<alt-e>pd5.`
-- `<alt-e>pd6.`
-- `<alt-e>pd7.`
-- `<alt-e>pd8.`
-- `<alt-e>pd9.`
+- `<alt-r>pd~`
+- `<alt-r>pd.`
+- `<alt-r>pd1.`
+- `<alt-r>pd2.`
+- `<alt-r>pd3.`
+- `<alt-r>pd4.`
+- `<alt-r>pd5.`
+- `<alt-r>pd6.`
+- `<alt-r>pd7.`
+- `<alt-r>pd8.`
+- `<alt-r>pd9.`
 
 #### 2.2.1. Retrieve to *p*aste: Lines
 
-- `<alt-e>plb`
-- `<alt-e>pl~`
-- `<alt-e>pl.`
-- `<alt-e>pl1.`
-- `<alt-e>pl2.`
-- `<alt-e>pl3.`
-- `<alt-e>pl4.`
-- `<alt-e>pl5.`
-- `<alt-e>pl6.`
-- `<alt-e>pl7.`
-- `<alt-e>pl8.`
-- `<alt-e>pl9.`
+- `<alt-r>plb`
+- `<alt-r>pl~`
+- `<alt-r>pl.`
+- `<alt-r>pl1.`
+- `<alt-r>pl2.`
+- `<alt-r>pl3.`
+- `<alt-r>pl4.`
+- `<alt-r>pl5.`
+- `<alt-r>pl6.`
+- `<alt-r>pl7.`
+- `<alt-r>pl8.`
+- `<alt-r>pl9.`
 
 #### 2.3.1. Retrieve to *p*aste: *r*ecent *f*iles, *d*irectories, and *c*ommands
 
-- `<alt-e>prf`
-- `<alt-e>prd`
-- `<alt-e>prc`
+- `<alt-r>prf`
+- `<alt-r>prd`
+- `<alt-r>prc`
 
 #### 3.1.1. Retrieve to *o*pen: [Find] [File]
 
-- `<alt-e>of~`
-- `<alt-e>of.`
-- `<alt-e>of1.`
-- `<alt-e>of2.`
-- `<alt-e>of3.`
-- `<alt-e>of4.`
-- `<alt-e>of5.`
-- `<alt-e>of6.`
-- `<alt-e>of7.`
-- `<alt-e>of8.`
-- `<alt-e>of9.`
+- `<alt-r>of~`
+- `<alt-r>of.`
+- `<alt-r>of1.`
+- `<alt-r>of2.`
+- `<alt-r>of3.`
+- `<alt-r>of4.`
+- `<alt-r>of5.`
+- `<alt-r>of6.`
+- `<alt-r>of7.`
+- `<alt-r>of8.`
+- `<alt-r>of9.`
