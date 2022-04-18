@@ -114,7 +114,10 @@ execute "nnoremap " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>
 " TODO
 
 " #### 2.2.1. Retrieve to *p*aste: Lines
-execute "nnoremap " . g:retrievious_leader_key . "plb <NOP>"
+" execute "nnoremap " . g:retrievious_leader_key . "plb <NOP>"
+execute "nnoremap " . g:retrievious_leader_key . "plb  <cmd>:lua require('telescope').extensions.grab_lines.grab_lines({grep_open_files=true, prompt_time='buffers'})<CR>"
+" :lua require('telescope').extensions.grab_lines.grab_lines({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+
 call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("pl", ".", "<SID>_grab_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("pl", "%", "<SID>_grab_up_n", "expand('%:p:h')")
