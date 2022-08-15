@@ -11,16 +11,16 @@ let g:retrievious_global_path_separator = get(g:, "retrievious_global_path_separ
 
 " Operational Functions {{{3
 lua << EOF
--- Use `live_grep_raw` if available, otherwise fall back to `live_grep`
--- - `live_grep_raw` is IMHO a more useful interface, allowing you to specify
+-- Use `live_grep_args` if available, otherwise fall back to `live_grep`
+-- - `live_grep_args` is IMHO a more useful interface, allowing you to specify
 --   file types in the query prompt (e.g., ``-tpy to_csv.*index``).
--- - Currently `live_grep_raw` is a standalone plugin
+-- - Currently `live_grep_args` is a standalone plugin
 --      (https://github.com/nvim-telescope/telescope-live-grep-raw.nvim)
 --   but hopefully/probably/soon will be incorporated into Telescope builtin.
-local has_telescope_live_grep_raw, telescope_live_grep_raw = pcall(require, "telescope._extensions.live_grep_raw")
+local has_telescope_live_grep_args, telescope_live_grep_args = pcall(require, "telescope._extensions.live_grep_args")
 function _G._telescope_grep(opts)
-    if has_telescope_live_grep_raw then
-        require('telescope').extensions.live_grep_raw.live_grep_raw(opts)
+    if has_telescope_live_grep_args then
+        require('telescope').extensions.live_grep_args.live_grep_args(opts)
     else
         require('telescope.builtin').live_grep(opts)
     end
@@ -43,7 +43,7 @@ function! s:_grep_up_n(root, count)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
     " :lua require('telescope.builtin').live_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
-    " :lua require('telescope').extensions.live_grep_raw.live_grep_raw({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    " :lua require('telescope').extensions.live_grep_args.live_grep_args({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
     :lua _telescope_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
 endfunction
 
