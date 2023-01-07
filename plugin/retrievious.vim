@@ -84,7 +84,7 @@ call s:_set_find_and_grep_keymaps("f", "%", "<SID>_find_from_cwd", "expand('%:p:
 
 " #### 1.1.3 Retrieve: [Find] Buffer
 execute "nnoremap " . g:retrievious_leader_key . "b <cmd>Telescope buffers<CR>"
-nnoremap <C-p> <cmd>Telescope buffers<CR>
+" nnoremap <C-p> <cmd>Telescope buffers<CR>
 
 " #### 1.1.4 Retrieve: [Find] Lines in Buffer
 execute ":nnoremap " . g:retrievious_leader_key . "lb :<C-u>Telescope current_buffer_fuzzy_find<CR>"
