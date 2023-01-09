@@ -95,6 +95,7 @@ then
         else
             local exc=${_FZF_FDFIND_EXCLUDE}
         fi
+        echo "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} $(__f_split_path_list ${1})" > ~/scratch/ret.txt
         eval "${RETRIEVIOUS_FDFIND_PATH} . --type f ${exc} ${RETRIEVIOUS_FDFIND_OPTS} $(__f_split_path_list ${1})"
     }
 
