@@ -180,9 +180,9 @@ By default, if undefined, they take on the value of "`$HOME`".
 - `<alt-r>g8.`
 - `<alt-r>g9.`
 - `<alt-r><alt-g>`
-    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
+    -   Searches for a file to visit, using grep, starting at the directory of the current buffer.
 - `<alt-r><ctrl-g>`
-    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS2`.
+    -   Searches for a file to visit, using grep, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
 
 #### 1.2.2. Retrieve [to visit]: Grep (Open) Buffers
 
