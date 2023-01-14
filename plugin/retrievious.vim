@@ -74,6 +74,7 @@ endfunction
 
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("f", "~", "<SID>_find_from_cwd", "'~'")
+call s:_set_find_and_grep_keymaps("f", "/", "<SID>_find_from_cwd", "'/'")
 execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator)})<CR>"
 execute ":nnoremap <silent> " . g:retrievious_leader_key . "<C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths2, vim.g.retrievious_global_path_separator)})<CR>"
 call s:_set_find_and_grep_keymaps("f", ".", "<SID>_find_from_cwd", "getcwd()")
