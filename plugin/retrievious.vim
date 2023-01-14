@@ -92,6 +92,7 @@ execute ":nnoremap " . g:retrievious_leader_key . "lb :<C-u>Telescope current_bu
 
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
+call s:_set_find_and_grep_keymaps("g", "/", "<SID>_grep_up_n", "'/'")
 " execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator)})<CR>"
 execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:h') ~= '' and vim.fn.expand('%:h') or '.'}})<CR>"
 " execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :lua require('telescope.builtin').live_grep({search_dirs={'/home/jeet/scratch'}})<CR>"

@@ -136,7 +136,7 @@ By default, if undefined, they take on the value of "`$HOME`".
 - `<alt-r>f1.`, `<alt-r>f2.`, `<alt-r>f3.`, ... `<alt-r>f9.`
     -   Searches for a file to visit, using find, starting at directory 1, 2, 3, etc. directory levels up from current working directory.
 - `<alt-r>f/`
-    -   Searches for a file to visit, using find, starting at `/`.
+    -   Searches for a file to visit, using find, starting at filesystem root.
 - `<alt-r><alt-f>`
     -   Searches for a file to visit, using find, starting at `$RETRIEVIOUS_GLOBAL_SEARCH_PATHS1`.
 - `<alt-r><alt-f>`
@@ -172,6 +172,7 @@ By default, if undefined, they take on the value of "`$HOME`".
 
 - `<alt-r>g~`
 - `<alt-r>g.`
+- `<alt-r>g/`
 - `<alt-r>g1.`
 - `<alt-r>g2.`
 - `<alt-r>g3.`
