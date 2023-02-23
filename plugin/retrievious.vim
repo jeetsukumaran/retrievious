@@ -18,12 +18,16 @@ lua << EOF
 --      (https://github.com/nvim-telescope/telescope-live-grep-raw.nvim)
 --   but hopefully/probably/soon will be incorporated into Telescope builtin.
 local has_telescope_live_grep_args, telescope_live_grep_args = pcall(require, "telescope._extensions.live_grep_args")
+local has_telescope_menufacture, telescope_menufacture = pcall(require, "telescope._extensions.menufacture.live_grep")
 function _G._telescope_grep(opts)
-    if has_telescope_live_grep_args then
-        require('telescope').extensions.live_grep_args.live_grep_args(opts)
-    else
-        require('telescope.builtin').live_grep(opts)
-    end
+    require('telescope').extensions.menufacture.live_grep(opts)
+    -- if has_telescope_menufacture then
+    --     require('telescope').extensions.menufacture.live_grep(opts)
+    -- elseif has_telescope_live_grep_args then
+    --     require('telescope').extensions.live_grep_args.live_grep_args(opts)
+    -- else
+    --     require('telescope.builtin').live_grep(opts)
+    -- end
 end
 EOF
 
@@ -33,7 +37,8 @@ function! s:_find_from_cwd(root, count)
     let rel = repeat("/..", nlevels)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
-    :lua require('telescope.builtin').find_files({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    ":lua require('telescope.builtin').find_files({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    :lua require('telescope').extensions.menufacture.find_files({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
 endfunction
 
 " Grep from count directories up from current working directory

@@ -25,6 +25,7 @@ It very quickly becomes intuitive to "speak" in this grammar to locate, for e.g.
 -   [popup](https://github.com/nvim-lua/popup.nvim)
 -   [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 -   [telescope-grab-lines](https://github.com/jeetsukumaran/telescope-grab-lines.nvim)
+-   [telescope-menufacture](https://github.com/molecule-man/telescope-menufacture)
 
 ### MVP Commands
 
