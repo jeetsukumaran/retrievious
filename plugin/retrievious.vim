@@ -111,7 +111,7 @@ execute "nnoremap " . g:retrievious_leader_key . "/  <cmd>:lua require('telescop
 
 " #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
 execute "nnoremap " . g:retrievious_leader_key . "gl :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
-execute "nnoremap " . g:retrievious_leader_key . "\ :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
+execute "nnoremap " . g:retrievious_leader_key . "\\ :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
 
 " #### 1.3.1. Retrieve [to visit]: Recent
 execute "nnoremap " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>"
