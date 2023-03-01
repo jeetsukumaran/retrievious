@@ -77,6 +77,9 @@ endfunction
 
 " Key Mappings {{{2
 
+" #### Prevent partial sequences from doing anything
+execute "nnoremap " . g:retrievious_leader_key . "<NOP>"
+
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("f", "~", "<SID>_find_from_cwd", "'~'")
 call s:_set_find_and_grep_keymaps("f", "/", "<SID>_find_from_cwd", "'/'")
