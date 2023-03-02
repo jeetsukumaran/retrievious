@@ -66,9 +66,9 @@ endfunction
 
 " Handles all [count] mappings for targets: '.', '%'
 function! s:_set_find_and_grep_keymaps(key_seq, target, fn_name, cwd)
-    execute "nnoremap " . g:retrievious_leader_key . a:key_seq . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", v:count)<CR>"
+    execute "nnoremap <silent> " . g:retrievious_leader_key . a:key_seq . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", v:count)<CR>"
     for nlevel in range(1, 9)
-        execute "nnoremap " . g:retrievious_leader_key . a:key_seq . nlevel . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", " . nlevel . ")<CR>"
+        execute "nnoremap <silent> " . g:retrievious_leader_key . a:key_seq . nlevel . a:target . " :<C-u>call " . a:fn_name . "(" . a:cwd . ", " . nlevel . ")<CR>"
     endfor
 endfunction
 " }}}3 Keymapping Functions
@@ -78,7 +78,7 @@ endfunction
 " Key Mappings {{{2
 
 " #### Prevent partial sequences from doing anything
-execute "nnoremap " . g:retrievious_leader_key . "<NOP>"
+execute "nnoremap <silent>" . g:retrievious_leader_key . " <NOP>"
 
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("f", "~", "<SID>_find_from_cwd", "'~'")
@@ -92,11 +92,11 @@ call s:_set_find_and_grep_keymaps("f", "%", "<SID>_find_from_cwd", "expand('%:p:
 " TODO
 
 " #### 1.1.3 Retrieve: [Find] Buffer
-execute "nnoremap " . g:retrievious_leader_key . "b <cmd>Telescope buffers<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "b <cmd>Telescope buffers<CR>"
 " nnoremap <C-p> <cmd>Telescope buffers<CR>
 
 " #### 1.1.4 Retrieve: [Find] Lines in Buffer
-execute ":nnoremap " . g:retrievious_leader_key . "lb :<C-u>Telescope current_buffer_fuzzy_find<CR>"
+execute ":nnoremap <silent> " . g:retrievious_leader_key . "lb :<C-u>Telescope current_buffer_fuzzy_find<CR>"
 
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
@@ -109,15 +109,15 @@ call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
 " #### 1.2.2. Retrieve [to visit]: Grep (Open) Buffers
-execute "nnoremap " . g:retrievious_leader_key . "gb <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title='buffers'})<CR>"
-execute "nnoremap " . g:retrievious_leader_key . "/  <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title='buffers'})<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "gb <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title='buffers'})<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "/  <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title='buffers'})<CR>"
 
 " #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
-execute "nnoremap " . g:retrievious_leader_key . "gl :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
-execute "nnoremap " . g:retrievious_leader_key . "\\ :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "gl :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "\\ :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
 
 " #### 1.3.1. Retrieve [to visit]: Recent
-execute "nnoremap " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>"
 
 " #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 " TODO
@@ -126,8 +126,8 @@ execute "nnoremap " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>
 " TODO
 
 " #### 2.2.1. Retrieve to *p*aste: Lines
-" execute "nnoremap " . g:retrievious_leader_key . "plb <NOP>"
-execute "nnoremap " . g:retrievious_leader_key . "plb  <cmd>:lua require('telescope').extensions.grab_lines.grab_lines({grep_open_files=true, prompt_time='buffers'})<CR>"
+" execute "nnoremap <silent> " . g:retrievious_leader_key . "plb <NOP>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "plb  <cmd>:lua require('telescope').extensions.grab_lines.grab_lines({grep_open_files=true, prompt_time='buffers'})<CR>"
 " :lua require('telescope').extensions.grab_lines.grab_lines({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
 
 call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")
