@@ -9,36 +9,13 @@ let g:retrievious_global_path_separator = get(g:, "retrievious_global_path_separ
 
 " Supporting Functions {{{2
 
-" Operational Functions {{{3
-lua << EOF
--- Use `live_grep_args` if available, otherwise fall back to `live_grep`
--- - `live_grep_args` is IMHO a more useful interface, allowing you to specify
---   file types in the query prompt (e.g., ``-tpy to_csv.*index``).
--- - Currently `live_grep_args` is a standalone plugin
---      (https://github.com/nvim-telescope/telescope-live-grep-raw.nvim)
---   but hopefully/probably/soon will be incorporated into Telescope builtin.
-local has_telescope_live_grep_args, telescope_live_grep_args = pcall(require, "telescope._extensions.live_grep_args")
-local has_telescope_menufacture, telescope_menufacture = pcall(require, "telescope._extensions.menufacture.live_grep")
-function _G._telescope_grep(opts)
-    require('telescope').extensions.menufacture.live_grep(opts)
-    -- if has_telescope_menufacture then
-    --     require('telescope').extensions.menufacture.live_grep(opts)
-    -- elseif has_telescope_live_grep_args then
-    --     require('telescope').extensions.live_grep_args.live_grep_args(opts)
-    -- else
-    --     require('telescope.builtin').live_grep(opts)
-    -- end
-end
-EOF
-
 " Find from count directories up from current working directory
 function! s:_find_from_cwd(root, count)
     let nlevels = a:count
     let rel = repeat("/..", nlevels)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
-    ":lua require('telescope.builtin').find_files({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
-    :lua require('telescope').extensions.menufacture.find_files({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    execute ":FZF" . cwd
 endfunction
 
 " Grep from count directories up from current working directory
@@ -47,20 +24,8 @@ function! s:_grep_up_n(root, count)
     let rel = repeat("/..", nlevels)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
-    " :lua require('telescope.builtin').live_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
-    " :lua require('telescope').extensions.live_grep_args.live_grep_args({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
-    :lua _telescope_grep({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
+    execute ":FzfRg" . cwd
 endfunction
-
-" Grep from count directories up from current working directory
-function! s:_grab_up_n(root, count)
-    let nlevels = a:count
-    let rel = repeat("/..", nlevels)
-    let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
-    let prompt_path = fnamemodify(cwd, ":p:~")
-    execute "Telescope grab_lines cwd=" . cwd
-endfunction
-" }}}3 Operational Functions
 
 " Keymapping Functions {{{3
 
@@ -83,8 +48,8 @@ execute "nnoremap <silent>" . g:retrievious_leader_key . " <NOP>"
 " #### 1.1.1. Retrieve [to visit]: [Find] [File]
 call s:_set_find_and_grep_keymaps("f", "~", "<SID>_find_from_cwd", "'~'")
 call s:_set_find_and_grep_keymaps("f", "/", "<SID>_find_from_cwd", "'/'")
-execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator)})<CR>"
-execute ":nnoremap <silent> " . g:retrievious_leader_key . "<C-f> :lua require('telescope.builtin').find_files({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths2, vim.g.retrievious_global_path_separator)})<CR>"
+execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-f> :FZF " . g:retrievious_global_search_paths1 . "<CR>"
+execute ":nnoremap <silent> " . g:retrievious_leader_key . "<C-f> :FZF " . g:retrievious_global_search_paths2 . "<CR>"
 call s:_set_find_and_grep_keymaps("f", ".", "<SID>_find_from_cwd", "getcwd()")
 call s:_set_find_and_grep_keymaps("f", "%", "<SID>_find_from_cwd", "expand('%:p:h')")
 
@@ -92,29 +57,26 @@ call s:_set_find_and_grep_keymaps("f", "%", "<SID>_find_from_cwd", "expand('%:p:
 " TODO
 
 " #### 1.1.3 Retrieve: [Find] Buffer
-execute "nnoremap <silent> " . g:retrievious_leader_key . "b <cmd>Telescope buffers<CR>"
-" nnoremap <C-p> <cmd>Telescope buffers<CR>
+execute "nnoremap <silent> " . g:retrievious_leader_key . "b <cmd>FzfBuffers<CR>"
 
 " #### 1.1.4 Retrieve: [Find] Lines in Buffer
-execute ":nnoremap <silent> " . g:retrievious_leader_key . "lb :<C-u>Telescope current_buffer_fuzzy_find<CR>"
+execute ":nnoremap <silent> " . g:retrievious_leader_key . "lb :<C-u>FzfBLines<CR>"
 
 " #### 1.2.1. Retrieve [to visit]: Grep [File]
 call s:_set_find_and_grep_keymaps("g", "~", "<SID>_grep_up_n", "'~'")
 call s:_set_find_and_grep_keymaps("g", "/", "<SID>_grep_up_n", "'/'")
-" execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :lua require('telescope.builtin').live_grep({search_dirs=vim.fn.split(vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator)})<CR>"
-execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:h') ~= '' and vim.fn.expand('%:h') or '.'}})<CR>"
-" execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :lua require('telescope.builtin').live_grep({search_dirs={'/home/jeet/scratch'}})<CR>"
-execute ":nnoremap <silent> " . g:retrievious_leader_key . "<C-g> :lua require('telescope.builtin').live_grep({search_dirs={vim.g.retrievious_global_search_paths1, vim.g.retrievious_global_path_separator}})<CR>"
+execute ":nnoremap <silent> " . g:retrievious_leader_key . "<M-g> :FzfRg " . g:retrievious_global_search_paths1 . "<CR>"
+execute ":nnoremap <silent> " . g:retrievious_leader_key . "<C-g> :FzfRg " . g:retrievious_global_search_paths2 . "<CR>"
 call s:_set_find_and_grep_keymaps("g", ".", "<SID>_grep_up_n", "getcwd()")
 call s:_set_find_and_grep_keymaps("g", "%", "<SID>_grep_up_n", "expand('%:p:h')")
 
 " #### 1.2.2. Retrieve [to visit]: Grep (Open) Buffers
-execute "nnoremap <silent> " . g:retrievious_leader_key . "gb <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title='buffers'})<CR>"
-execute "nnoremap <silent> " . g:retrievious_leader_key . "/  <cmd>:lua require('telescope.builtin').live_grep({grep_open_files=true, prompt_title='buffers'})<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "gb <cmd>:FzfLines<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "/  <cmd>:FzfLines<CR>"
 
 " #### 1.2.3. Retrieve [to visit]: Grep Lines (in Current Buffer)
-execute "nnoremap <silent> " . g:retrievious_leader_key . "gl :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
-execute "nnoremap <silent> " . g:retrievious_leader_key . "\\ :lua require('telescope.builtin').live_grep({search_dirs={vim.fn.expand('%:p')}})<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "gl <cmd>:FzfBLines<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "\\  <cmd>:FzfBLines<CR>"
 
 " #### 1.3.1. Retrieve [to visit]: Recent
 execute "nnoremap <silent> " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>"
@@ -127,7 +89,7 @@ execute "nnoremap <silent> " . g:retrievious_leader_key . "rf <cmd>Telescope old
 
 " #### 2.2.1. Retrieve to *p*aste: Lines
 " execute "nnoremap <silent> " . g:retrievious_leader_key . "plb <NOP>"
-execute "nnoremap <silent> " . g:retrievious_leader_key . "plb  <cmd>:lua require('telescope').extensions.grab_lines.grab_lines({grep_open_files=true, prompt_time='buffers'})<CR>"
+" execute "nnoremap <silent> " . g:retrievious_leader_key . "plb  <cmd>:lua require('telescope').extensions.grab_lines.grab_lines({grep_open_files=true, prompt_time='buffers'})<CR>"
 " :lua require('telescope').extensions.grab_lines.grab_lines({cwd=vim.fn.eval("cwd"), prompt_title=vim.fn.eval("prompt_path")})
 
 call s:_set_find_and_grep_keymaps("pl", "~", "<SID>_grab_up_n", "'~'")

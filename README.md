@@ -13,6 +13,7 @@ It very quickly becomes intuitive to "speak" in this grammar to locate, for e.g.
 
 -   [fzf](https://github.com/junegunn/fzf)
 -   [ripgrep](https://github.com/BurntSushi/ripgrep)
+-   [fd](https://github.com/sharkdp/fd)
 -   [fasd](https://github.com/clvv/fasd)
 -   [bat](https://github.com/sharkdp/bat)
 
@@ -20,12 +21,7 @@ It very quickly becomes intuitive to "speak" in this grammar to locate, for e.g.
 
 #### Required
 
--   [Telescope](https://github.com/nvim-telescope/telescope.nvim)
--   [plenary](https://github.com/nvim-lua/plenary.nvim)
--   [popup](https://github.com/nvim-lua/popup.nvim)
--   [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
--   [telescope-grab-lines](https://github.com/jeetsukumaran/telescope-grab-lines.nvim)
--   [telescope-menufacture](https://github.com/molecule-man/telescope-menufacture)
+- [fzf](https://github.com/junegunn/fzf.vim)
 
 ### MVP Commands
 
