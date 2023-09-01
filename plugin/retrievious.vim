@@ -79,7 +79,7 @@ execute "nnoremap <silent> " . g:retrievious_leader_key . "gl <cmd>:FzfBLines<CR
 execute "nnoremap <silent> " . g:retrievious_leader_key . "\\  <cmd>:FzfBLines<CR>"
 
 " #### 1.3.1. Retrieve [to visit]: Recent
-execute "nnoremap <silent> " . g:retrievious_leader_key . "rf <cmd>Telescope oldfiles<CR>"
+execute "nnoremap <silent> " . g:retrievious_leader_key . "rf <cmd>:FzfMruFiles<CR>"
 
 " #### 2.1.1. Retrieve to *p*aste: [Find] [File]
 " TODO
