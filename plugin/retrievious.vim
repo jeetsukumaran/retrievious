@@ -15,7 +15,7 @@ function! s:_find_from_cwd(root, count)
     let rel = repeat("/..", nlevels)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
-    execute ":FZF" . cwd
+    execute ":FZF " . cwd
 endfunction
 
 " Grep from count directories up from current working directory
@@ -24,7 +24,8 @@ function! s:_grep_up_n(root, count)
     let rel = repeat("/..", nlevels)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
     let prompt_path = fnamemodify(cwd, ":p:~")
-    execute ":FzfRg" . cwd
+    echo cwd
+    execute ":FzfRg " . cwd
 endfunction
 
 " Keymapping Functions {{{3
