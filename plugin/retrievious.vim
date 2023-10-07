@@ -7,7 +7,9 @@ let g:retrievious_global_path_separator = get(g:, "retrievious_global_path_separ
 
 " Keybinds {{{1
 
-" Supporting Functions {{{2
+" Supporting Commands and Functions {{{2
+"
+
 
 " Find from count directories up from current working directory
 function! s:_find_from_cwd(root, count)
@@ -18,14 +20,17 @@ function! s:_find_from_cwd(root, count)
     execute ":FZF " . cwd
 endfunction
 
+
+" command that takes directory as argument
+command! -complete=dir -nargs=* Fzfg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case . -- " . shellescape(fnamemodify(<q-args>, ':p')), fzf#vim#with_preview(), 0)
+
 " Grep from count directories up from current working directory
 function! s:_grep_up_n(root, count)
     let nlevels = a:count
     let rel = repeat("/..", nlevels)
     let cwd = substitute(a:root . "/" . rel . "/", "//", "/", "g")
-    let prompt_path = fnamemodify(cwd, ":p:~")
-    echo cwd
-    execute ":FzfRg " . cwd
+    " let prompt_path = fnamemodify(cwd, ":p:~")
+    execute ":Fzfg " . cwd
 endfunction
 
 " Keymapping Functions {{{3
